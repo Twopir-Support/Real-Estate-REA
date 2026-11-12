@@ -22,3 +22,5 @@ Thumbs.db
 # Secrets
 .env
 *.key
+.sf-deploy-result.json
+.sf-test-result.json
