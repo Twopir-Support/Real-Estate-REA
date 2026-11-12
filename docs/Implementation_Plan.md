@@ -1,6 +1,7 @@
 # Architecture and Implementation Plan — TC Commercial Real Estate
 
-**Status:** approved 2026-11-12. Building.
+**Status:** approved and **delivered** on 2026-11-12. Phases P1–P7 are
+deployed to `REA-Dev`. Results are in [Testing_Report.md](Testing_Report.md).
 - **Scope:** mirror the AscendixRE structure as publicly documented.
 - **Naming:** everything uses the `TC_` prefix.
 

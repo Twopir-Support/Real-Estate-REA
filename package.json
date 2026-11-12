@@ -1,0 +1,13 @@
+{
+  "name": "real-estate-rea",
+  "private": true,
+  "description": "TC Commercial Real Estate (Salesforce) - build tooling",
+  "scripts": {
+    "generate": "node scripts/generate.js && node scripts/ui-meta.js && node scripts/lwc-meta.js && node scripts/reports-meta.js",
+    "inventory": "node scripts/inventory-xlsx.js",
+    "test:apex": "bash scripts/run-tc-tests.sh"
+  },
+  "devDependencies": {
+    "exceljs": "4.4.0"
+  }
+}

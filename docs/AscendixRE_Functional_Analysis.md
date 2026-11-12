@@ -1,5 +1,14 @@
 # AscendixRE — Functional Analysis
 
+> **Note (2026-11-12, after approval):** the "Our design" lines below describe the
+> first proposal, which used `REA_` names and a smaller object set. That proposal
+> was superseded by the **TC mirror**: `TC_` naming throughout, and AscendixRE's
+> own object structure (Unit, Prospective Listing/Buyer, Deal/Lease Period, Deal
+> Source, Term Sheet, and so on). See
+> [AscendixRE_vs_TC_Comparison.md](AscendixRE_vs_TC_Comparison.md) and the
+> generated [Salesforce_Data_Model.md](Salesforce_Data_Model.md) for what was
+> actually built. The AscendixRE findings in this document are unchanged.
+
 Date: 2026-11-12.
 
 **Sources.** All findings come from public material:
