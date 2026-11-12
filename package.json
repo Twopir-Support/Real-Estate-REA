@@ -8,6 +8,7 @@
     "test:apex": "bash scripts/run-tc-tests.sh"
   },
   "devDependencies": {
-    "exceljs": "4.4.0"
+    "exceljs": "4.4.0",
+    "pptxgenjs": "^3.12.0"
   }
 }
