@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <name>Flows_Bypassed</name>
+        <label>Flows Bypassed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Follow_Up_Task</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Run</defaultConnectorLabel>
+        <rules>
+            <name>Bypassed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Bypass_Flows</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Bypassed</label>
+        </rules>
+    </decisions>
+    <description>When an inquiry is created, gives its owner a follow-up task due the next day.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Bypass_Flows</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Setup.TC_Bypass_Settings__c.TC_Bypass_Flows__c}</expression>
+    </formulas>
+    <formulas>
+        <name>Due_Tomorrow</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate} + 1</expression>
+    </formulas>
+    <formulas>
+        <name>Task_Subject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Follow up on &quot; &amp; TEXT({!$Record.TC_Inquiry_Type__c}) &amp; &quot; inquiry &quot; &amp; {!$Record.Name} &amp; IF(ISBLANK({!$Record.TC_Last_Name__c}), &quot;&quot;, &quot; from &quot; &amp; {!$Record.TC_First_Name__c} &amp; &quot; &quot; &amp; {!$Record.TC_Last_Name__c})</expression>
+    </formulas>
+    <interviewLabel>TC Inquiry New Follow Up {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TC Inquiry New Follow Up</label>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Follow_Up_Task</name>
+        <label>Create Follow-up Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>Due_Tomorrow</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>Task_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Call</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Flows_Bypassed</targetReference>
+        </connector>
+        <object>TC_Inquiry__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

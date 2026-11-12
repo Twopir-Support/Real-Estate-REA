@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Default_House_Percent</name>
+        <label>Default House Percent</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>commission.TC_House_Fee_Percent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>30.0</numberValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Needs_House_Default</name>
+        <label>Needs House Default?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Leave as entered</defaultConnectorLabel>
+        <rules>
+            <name>Inside_Broker_Without_House</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>commission.TC_Broker__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>commission.TC_House_Fee_Percent__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Default_House_Percent</targetReference>
+            </connector>
+            <label>Inside broker without house %</label>
+        </rules>
+    </decisions>
+    <description>Custom-logic hook called by the commission grid for every commission before it is saved (mirrors the AscendixRE Commission_Trigger flow). The input/output variable "commission" can be changed here; by default an inside broker with no house percent gets 30%.</description>
+    <environments>Default</environments>
+    <interviewLabel>TC Commission Trigger {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TC Commission Trigger</label>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Needs_House_Default</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>commission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>TC_Commission__c</objectType>
+    </variables>
+</Flow>

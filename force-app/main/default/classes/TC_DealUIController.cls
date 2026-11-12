@@ -153,6 +153,7 @@ public with sharing class TC_DealUIController {
     public static void saveCommissions(List<TC_Commission__c> rows) {
         List<TC_Commission__c> inserts = new List<TC_Commission__c>();
         List<TC_Commission__c> updates = new List<TC_Commission__c>();
+        rows = applyCommissionHook(rows);
         for (TC_Commission__c c : rows) {
             if (c.Id == null) { inserts.add(c); } else { updates.add(c); }
         }
@@ -162,6 +163,26 @@ public with sharing class TC_DealUIController {
         } catch (DmlException e) {
             throw new AuraHandledException(e.getDmlMessage(0));
         }
+    }
+
+    /**
+     * Runs the TC_Commission_Trigger flow for each commission before it is saved, so admins can add
+     * custom logic declaratively (mirrors the AscendixRE Commission_Trigger flow hook).
+     */
+    @TestVisible
+    private static List<TC_Commission__c> applyCommissionHook(List<TC_Commission__c> rows) {
+        List<TC_Commission__c> result = new List<TC_Commission__c>();
+        for (TC_Commission__c c : rows) {
+            try {
+                Flow.Interview fi = Flow.Interview.createInterview('TC_Commission_Trigger', new Map<String, Object>{ 'commission' => c });
+                fi.start();
+                Object updated = fi.getVariableValue('commission');
+                result.add(updated == null ? c : (TC_Commission__c) updated);
+            } catch (Exception e) {
+                result.add(c); // the hook is optional; never block a save because it is missing or inactive
+            }
+        }
+        return result;
     }
 
     // ---------------------------------------------------------------- term sheets
