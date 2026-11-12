@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_High_Rate_Above_Low</fullName>
+    <active>true</active>
+    <description>High Rate must be greater than or equal to Low Rate.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Low_Rate__c)), NOT(ISBLANK(TC_High_Rate__c)), TC_High_Rate__c &lt; TC_Low_Rate__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_High_Rate__c</errorDisplayField>
+    <errorMessage>High Rate must be greater than or equal to Low Rate.</errorMessage>
+</ValidationRule>

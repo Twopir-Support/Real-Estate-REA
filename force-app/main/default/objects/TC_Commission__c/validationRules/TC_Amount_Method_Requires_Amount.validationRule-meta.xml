@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Amount_Method_Requires_Amount</fullName>
+    <active>true</active>
+    <description>Enter a Fee Amount when the Fee Method is Amount.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Fee_Method__c, &quot;Amount&quot;), ISBLANK(TC_Fee_Amount__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Fee_Amount__c</errorDisplayField>
+    <errorMessage>Enter a Fee Amount when the Fee Method is Amount.</errorMessage>
+</ValidationRule>

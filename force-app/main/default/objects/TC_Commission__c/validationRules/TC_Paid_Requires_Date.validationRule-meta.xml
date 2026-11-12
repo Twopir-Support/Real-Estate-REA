@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Paid_Requires_Date</fullName>
+    <active>true</active>
+    <description>Enter the Paid Date when marking a commission as Paid.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Status__c, &quot;Paid&quot;), ISBLANK(TC_Paid_Date__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Paid_Date__c</errorDisplayField>
+    <errorMessage>Enter the Paid Date when marking a commission as Paid.</errorMessage>
+</ValidationRule>

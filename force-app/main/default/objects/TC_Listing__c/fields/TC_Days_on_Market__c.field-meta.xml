@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Days_on_Market__c</fullName>
+    <formula>IF(AND(ISPICKVAL(TC_Status__c, &quot;Active&quot;), NOT(ISBLANK(TC_Listing_Date__c))), TODAY() - TC_Listing_Date__c, null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days on Market</label>
+    <precision>18</precision>
+    <scale>0</scale>
+    <type>Number</type>
+</CustomField>

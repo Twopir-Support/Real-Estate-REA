@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Max_Deal_Size_Above_Min</fullName>
+    <active>true</active>
+    <description>Max Deal Size must be greater than or equal to Min Deal Size.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Min_Deal_Size__c)), NOT(ISBLANK(TC_Max_Deal_Size__c)), TC_Max_Deal_Size__c &lt; TC_Min_Deal_Size__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Max_Deal_Size__c</errorDisplayField>
+    <errorMessage>Max Deal Size must be greater than or equal to Min Deal Size.</errorMessage>
+</ValidationRule>

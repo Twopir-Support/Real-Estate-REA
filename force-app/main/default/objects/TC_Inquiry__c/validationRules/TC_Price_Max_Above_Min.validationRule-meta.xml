@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Price_Max_Above_Min</fullName>
+    <active>true</active>
+    <description>Price Max must be greater than or equal to Price Min.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Price_Min__c)), NOT(ISBLANK(TC_Price_Max__c)), TC_Price_Max__c &lt; TC_Price_Min__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Price_Max__c</errorDisplayField>
+    <errorMessage>Price Max must be greater than or equal to Price Min.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Renovated_After_Built</fullName>
+    <active>true</active>
+    <description>Year Renovated cannot be before Year Built.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Year_Renovated__c)), NOT(ISBLANK(TC_Year_Built__c)), TC_Year_Renovated__c &lt; TC_Year_Built__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Year_Renovated__c</errorDisplayField>
+    <errorMessage>Year Renovated cannot be before Year Built.</errorMessage>
+</ValidationRule>

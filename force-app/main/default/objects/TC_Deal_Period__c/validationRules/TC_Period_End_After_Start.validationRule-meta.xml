@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Period_End_After_Start</fullName>
+    <active>true</active>
+    <description>The period end date (To) must be on or after the start date (From).</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    TC_To__c &lt; TC_From__c
+)</errorConditionFormula>
+    <errorDisplayField>TC_To__c</errorDisplayField>
+    <errorMessage>The period end date (To) must be on or after the start date (From).</errorMessage>
+</ValidationRule>

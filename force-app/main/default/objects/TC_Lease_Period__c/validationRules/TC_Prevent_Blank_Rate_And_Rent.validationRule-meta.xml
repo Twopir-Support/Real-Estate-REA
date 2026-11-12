@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Prevent_Blank_Rate_And_Rent</fullName>
+    <active>true</active>
+    <description>Enter a Rate or a Rent Per Month, or mark the period as Free Rent.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(TC_Free_Rent__c), ISBLANK(TC_Rate__c), ISBLANK(TC_Rent_Per_Month__c))
+)</errorConditionFormula>
+    <errorMessage>Enter a Rate or a Rent Per Month, or mark the period as Free Rent.</errorMessage>
+</ValidationRule>

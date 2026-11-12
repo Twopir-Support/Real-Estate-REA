@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Source_Type__c</fullName>
+    <label>Source Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bank</fullName>
+                <default>false</default>
+                <label>Bank</label>
+            </value>
+            <value>
+                <fullName>Life Company</fullName>
+                <default>false</default>
+                <label>Life Company</label>
+            </value>
+            <value>
+                <fullName>CMBS Lender</fullName>
+                <default>false</default>
+                <label>CMBS Lender</label>
+            </value>
+            <value>
+                <fullName>Debt Fund</fullName>
+                <default>false</default>
+                <label>Debt Fund</label>
+            </value>
+            <value>
+                <fullName>Agency</fullName>
+                <default>false</default>
+                <label>Agency</label>
+            </value>
+            <value>
+                <fullName>Credit Union</fullName>
+                <default>false</default>
+                <label>Credit Union</label>
+            </value>
+            <value>
+                <fullName>Private Equity</fullName>
+                <default>false</default>
+                <label>Private Equity</label>
+            </value>
+            <value>
+                <fullName>REIT</fullName>
+                <default>false</default>
+                <label>REIT</label>
+            </value>
+            <value>
+                <fullName>Family Office</fullName>
+                <default>false</default>
+                <label>Family Office</label>
+            </value>
+            <value>
+                <fullName>Private Investor</fullName>
+                <default>false</default>
+                <label>Private Investor</label>
+            </value>
+            <value>
+                <fullName>Pension Fund</fullName>
+                <default>false</default>
+                <label>Pension Fund</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

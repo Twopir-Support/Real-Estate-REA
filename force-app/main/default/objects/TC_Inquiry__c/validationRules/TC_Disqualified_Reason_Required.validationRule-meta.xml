@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Disqualified_Reason_Required</fullName>
+    <active>true</active>
+    <description>Choose a Disqualified Reason.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Status__c, &quot;Disqualified&quot;), ISBLANK(TEXT(TC_Disqualified_Reason__c)))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Disqualified_Reason__c</errorDisplayField>
+    <errorMessage>Choose a Disqualified Reason.</errorMessage>
+</ValidationRule>

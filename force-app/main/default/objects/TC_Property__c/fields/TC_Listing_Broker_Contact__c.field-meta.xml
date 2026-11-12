@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Listing_Broker_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Listing Broker Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Properties (Listing Broker Contact)</relationshipLabel>
+    <relationshipName>Property_Listing_Broker_Contacts</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Total_Rent_Calculation__c</fullName>
+    <label>Total Rent Calculation</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>TC_Total_Rent_Calculation</valueSetName>
+    </valueSet>
+</CustomField>

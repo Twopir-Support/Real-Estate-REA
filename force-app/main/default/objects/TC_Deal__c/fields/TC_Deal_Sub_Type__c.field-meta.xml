@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Deal_Sub_Type__c</fullName>
+    <label>Deal Sub Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lease Listing - Exclusive</fullName>
+                <default>false</default>
+                <label>Lease Listing - Exclusive</label>
+            </value>
+            <value>
+                <fullName>Lease Listing - Non Exclusive</fullName>
+                <default>false</default>
+                <label>Lease Listing - Non Exclusive</label>
+            </value>
+            <value>
+                <fullName>Sale Listing - Exclusive</fullName>
+                <default>false</default>
+                <label>Sale Listing - Exclusive</label>
+            </value>
+            <value>
+                <fullName>Sale Listing - Non-Exclusive</fullName>
+                <default>false</default>
+                <label>Sale Listing - Non-Exclusive</label>
+            </value>
+            <value>
+                <fullName>Sale or Lease</fullName>
+                <default>false</default>
+                <label>Sale or Lease</label>
+            </value>
+            <value>
+                <fullName>Sublease</fullName>
+                <default>false</default>
+                <label>Sublease</label>
+            </value>
+            <value>
+                <fullName>New Lease</fullName>
+                <default>false</default>
+                <label>New Lease</label>
+            </value>
+            <value>
+                <fullName>Renewal</fullName>
+                <default>false</default>
+                <label>Renewal</label>
+            </value>
+            <value>
+                <fullName>Expansion</fullName>
+                <default>false</default>
+                <label>Expansion</label>
+            </value>
+            <value>
+                <fullName>Relocation</fullName>
+                <default>false</default>
+                <label>Relocation</label>
+            </value>
+            <value>
+                <fullName>Acquisition</fullName>
+                <default>false</default>
+                <label>Acquisition</label>
+            </value>
+            <value>
+                <fullName>Disposition</fullName>
+                <default>false</default>
+                <label>Disposition</label>
+            </value>
+            <value>
+                <fullName>Refinance</fullName>
+                <default>false</default>
+                <label>Refinance</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Active_Lease_Requires_Rate</fullName>
+    <active>true</active>
+    <description>An active Lease listing needs an Asking Rate.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Status__c, &quot;Active&quot;), OR($RecordType.DeveloperName = &quot;TC_Lease&quot;, $RecordType.DeveloperName = &quot;TC_Sale_or_Lease&quot;), ISBLANK(TC_Asking_Rate__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Asking_Rate__c</errorDisplayField>
+    <errorMessage>An active Lease listing needs an Asking Rate.</errorMessage>
+</ValidationRule>

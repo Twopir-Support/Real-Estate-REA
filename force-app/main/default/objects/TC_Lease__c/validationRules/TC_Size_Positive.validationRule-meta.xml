@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Size_Positive</fullName>
+    <active>true</active>
+    <description>Size must be greater than zero.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    TC_Size__c &lt;= 0
+)</errorConditionFormula>
+    <errorDisplayField>TC_Size__c</errorDisplayField>
+    <errorMessage>Size must be greater than zero.</errorMessage>
+</ValidationRule>

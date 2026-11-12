@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Property__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Property</label>
+    <referenceTo>TC_Property__c</referenceTo>
+    <relationshipLabel>Market Rents (Property)</relationshipLabel>
+    <relationshipName>Market_Rent_Propertys</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

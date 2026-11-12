@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Active_Sale_Requires_Price</fullName>
+    <active>true</active>
+    <description>An active Sale listing needs an Asking Price.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Status__c, &quot;Active&quot;), OR($RecordType.DeveloperName = &quot;TC_Sale&quot;, $RecordType.DeveloperName = &quot;TC_Sale_or_Lease&quot;), ISBLANK(TC_Asking_Price__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Asking_Price__c</errorDisplayField>
+    <errorMessage>An active Sale listing needs an Asking Price.</errorMessage>
+</ValidationRule>

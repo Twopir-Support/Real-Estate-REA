@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Deal_Source__c</fullName>
+    <label>Deal Source</label>
+    <referenceTo>TC_Deal_Source__c</referenceTo>
+    <relationshipLabel>Term Sheets</relationshipLabel>
+    <relationshipName>Term_Sheets</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

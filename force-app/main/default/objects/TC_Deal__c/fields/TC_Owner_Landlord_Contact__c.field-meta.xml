@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Owner_Landlord_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Owner / Landlord Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Deals (Owner / Landlord Contact)</relationshipLabel>
+    <relationshipName>Deal_Owner_Landlord_Contacts</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

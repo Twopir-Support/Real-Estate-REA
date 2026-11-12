@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Capital_Types__c</fullName>
+    <label>Capital Types</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Senior Debt</fullName>
+                <default>false</default>
+                <label>Senior Debt</label>
+            </value>
+            <value>
+                <fullName>Construction Loan</fullName>
+                <default>false</default>
+                <label>Construction Loan</label>
+            </value>
+            <value>
+                <fullName>Bridge Loan</fullName>
+                <default>false</default>
+                <label>Bridge Loan</label>
+            </value>
+            <value>
+                <fullName>Mezzanine</fullName>
+                <default>false</default>
+                <label>Mezzanine</label>
+            </value>
+            <value>
+                <fullName>Preferred Equity</fullName>
+                <default>false</default>
+                <label>Preferred Equity</label>
+            </value>
+            <value>
+                <fullName>Joint Venture Equity</fullName>
+                <default>false</default>
+                <label>Joint Venture Equity</label>
+            </value>
+            <value>
+                <fullName>Acquisition Equity</fullName>
+                <default>false</default>
+                <label>Acquisition Equity</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

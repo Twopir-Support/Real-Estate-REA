@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Annual Ratio Rent</fullName>
+        <default>false</default>
+        <label>Annual Ratio Rent</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Rate</fullName>
+        <default>false</default>
+        <label>Monthly Rate</label>
+    </customValue>
+    <masterLabel>TC Total Rent Calculation</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Lead_Broker__c</fullName>
+    <label>Lead Broker</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Deals (Lead Broker)</relationshipLabel>
+    <relationshipName>Deal_Lead_Brokers</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

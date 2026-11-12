@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>NNN</fullName>
+        <default>false</default>
+        <label>NNN</label>
+    </customValue>
+    <customValue>
+        <fullName>Gross</fullName>
+        <default>false</default>
+        <label>Gross</label>
+    </customValue>
+    <customValue>
+        <fullName>Modified Gross</fullName>
+        <default>false</default>
+        <label>Modified Gross</label>
+    </customValue>
+    <customValue>
+        <fullName>Full Service</fullName>
+        <default>false</default>
+        <label>Full Service</label>
+    </customValue>
+    <customValue>
+        <fullName>Industrial Gross</fullName>
+        <default>false</default>
+        <label>Industrial Gross</label>
+    </customValue>
+    <masterLabel>TC Rent Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Property_Manager__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Property Manager</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Properties (Property Manager)</relationshipLabel>
+    <relationshipName>Property_Property_Managers</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

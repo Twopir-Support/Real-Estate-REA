@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Is_Closed__c</fullName>
+    <formula>OR(ISPICKVAL(TC_Status__c, &quot;Won&quot;), ISPICKVAL(TC_Status__c, &quot;Lost&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Closed</label>
+    <type>Checkbox</type>
+</CustomField>

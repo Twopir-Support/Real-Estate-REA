@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Per_SF_Fee_Lease_Deals_Only</fullName>
+    <active>true</active>
+    <description>The $ per SF fee method is only available for Tenant and Landlord Representation deals.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Gross_Fee_Method__c, &quot;By $ per SF&quot;), $RecordType.DeveloperName &lt;&gt; &quot;TC_Tenant_Representation&quot;, $RecordType.DeveloperName &lt;&gt; &quot;TC_Landlord_Representation&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Gross_Fee_Method__c</errorDisplayField>
+    <errorMessage>The $ per SF fee method is only available for Tenant and Landlord Representation deals.</errorMessage>
+</ValidationRule>

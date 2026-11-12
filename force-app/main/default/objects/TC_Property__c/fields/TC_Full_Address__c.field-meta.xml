@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Full_Address__c</fullName>
+    <formula>TC_Street__c &amp; &quot;, &quot; &amp; TC_City__c &amp; IF(ISBLANK(TC_State__c), &quot;&quot;, &quot;, &quot; &amp; TC_State__c) &amp; IF(ISBLANK(TC_Postal_Code__c), &quot;&quot;, &quot; &quot; &amp; TC_Postal_Code__c)</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Full Address</label>
+    <type>Text</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Percent_Method_Requires_Percent</fullName>
+    <active>true</active>
+    <description>Enter a Fee Percent when the Fee Method is Percent.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(ISPICKVAL(TC_Fee_Method__c, &quot;Percent&quot;), ISBLANK(TC_Fee_Percent__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Fee_Percent__c</errorDisplayField>
+    <errorMessage>Enter a Fee Percent when the Fee Method is Percent.</errorMessage>
+</ValidationRule>

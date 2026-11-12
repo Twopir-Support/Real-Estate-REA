@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Lease</fullName>
+    <active>true</active>
+    <description>Lease listing record type.</description>
+    <label>Lease</label>
+    <picklistValues>
+        <picklist>TC_Status__c</picklist>
+        <values>
+            <fullName>Draft</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Active</fullName>
+        </values>
+        <values>
+            <fullName>Under Contract</fullName>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+        </values>
+        <values>
+            <fullName>Withdrawn</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Property_Type__c</picklist>
+        <values>
+            <fullName>Office</fullName>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+        </values>
+        <values>
+            <fullName>Industrial</fullName>
+        </values>
+        <values>
+            <fullName>Multifamily</fullName>
+        </values>
+        <values>
+            <fullName>Land</fullName>
+        </values>
+        <values>
+            <fullName>Hospitality</fullName>
+        </values>
+        <values>
+            <fullName>Mixed Use</fullName>
+        </values>
+        <values>
+            <fullName>Special Purpose</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Property_Subtype__c</picklist>
+        <values>
+            <fullName>CBD</fullName>
+        </values>
+        <values>
+            <fullName>Suburban</fullName>
+        </values>
+        <values>
+            <fullName>Creative / Loft</fullName>
+        </values>
+        <values>
+            <fullName>Medical Office</fullName>
+        </values>
+        <values>
+            <fullName>Strip Center</fullName>
+        </values>
+        <values>
+            <fullName>Neighborhood Center</fullName>
+        </values>
+        <values>
+            <fullName>Power Center</fullName>
+        </values>
+        <values>
+            <fullName>Mall</fullName>
+        </values>
+        <values>
+            <fullName>Freestanding</fullName>
+        </values>
+        <values>
+            <fullName>Street Retail</fullName>
+        </values>
+        <values>
+            <fullName>Warehouse / Distribution</fullName>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+        </values>
+        <values>
+            <fullName>Flex / R&amp;D</fullName>
+        </values>
+        <values>
+            <fullName>Cold Storage</fullName>
+        </values>
+        <values>
+            <fullName>Data Center</fullName>
+        </values>
+        <values>
+            <fullName>Garden</fullName>
+        </values>
+        <values>
+            <fullName>Mid-Rise</fullName>
+        </values>
+        <values>
+            <fullName>High-Rise</fullName>
+        </values>
+        <values>
+            <fullName>Student Housing</fullName>
+        </values>
+        <values>
+            <fullName>Senior Housing</fullName>
+        </values>
+        <values>
+            <fullName>Commercial Land</fullName>
+        </values>
+        <values>
+            <fullName>Industrial Land</fullName>
+        </values>
+        <values>
+            <fullName>Residential Land</fullName>
+        </values>
+        <values>
+            <fullName>Agricultural</fullName>
+        </values>
+        <values>
+            <fullName>Full Service Hotel</fullName>
+        </values>
+        <values>
+            <fullName>Limited Service Hotel</fullName>
+        </values>
+        <values>
+            <fullName>Resort</fullName>
+        </values>
+        <values>
+            <fullName>Office / Retail</fullName>
+        </values>
+        <values>
+            <fullName>Residential / Retail</fullName>
+        </values>
+        <values>
+            <fullName>Self Storage</fullName>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+        </values>
+        <values>
+            <fullName>Religious</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Rent_Type__c</picklist>
+        <values>
+            <fullName>NNN</fullName>
+        </values>
+        <values>
+            <fullName>Gross</fullName>
+        </values>
+        <values>
+            <fullName>Modified Gross</fullName>
+        </values>
+        <values>
+            <fullName>Full Service</fullName>
+        </values>
+        <values>
+            <fullName>Industrial Gross</fullName>
+        </values>
+    </picklistValues>
+</RecordType>

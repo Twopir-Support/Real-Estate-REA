@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Year_Built_Range</fullName>
+    <active>true</active>
+    <description>Year Built must be between 1800 and five years from now.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Year_Built__c)), OR(TC_Year_Built__c &lt; 1800, TC_Year_Built__c &gt; YEAR(TODAY()) + 5))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Year_Built__c</errorDisplayField>
+    <errorMessage>Year Built must be between 1800 and five years from now.</errorMessage>
+</ValidationRule>

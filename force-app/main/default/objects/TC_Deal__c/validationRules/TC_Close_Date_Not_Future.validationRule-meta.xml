@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Close_Date_Not_Future</fullName>
+    <active>true</active>
+    <description>Actual Close Date cannot be in the future.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    TC_Actual_Close_Date__c &gt; TODAY()
+)</errorConditionFormula>
+    <errorDisplayField>TC_Actual_Close_Date__c</errorDisplayField>
+    <errorMessage>Actual Close Date cannot be in the future.</errorMessage>
+</ValidationRule>

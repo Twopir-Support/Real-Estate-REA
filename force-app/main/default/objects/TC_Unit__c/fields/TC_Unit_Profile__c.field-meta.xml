@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Unit_Profile__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Unit Profile</label>
+    <referenceTo>TC_Unit_Profile__c</referenceTo>
+    <relationshipLabel>Units (Unit Profile)</relationshipLabel>
+    <relationshipName>Unit_Unit_Profiles</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

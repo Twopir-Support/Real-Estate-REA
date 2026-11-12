@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Size_Max_Above_Min</fullName>
+    <active>true</active>
+    <description>Size Max must be greater than or equal to Size Min.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Size_Min__c)), NOT(ISBLANK(TC_Size_Max__c)), TC_Size_Max__c &lt; TC_Size_Min__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Size_Max__c</errorDisplayField>
+    <errorMessage>Size Max must be greater than or equal to Size Min.</errorMessage>
+</ValidationRule>

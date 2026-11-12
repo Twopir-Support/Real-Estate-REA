@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Capital_Source__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>Capital Source</label>
+    <referenceTo>TC_Capital_Source__c</referenceTo>
+    <relationshipLabel>Deal Sources (Capital Source)</relationshipLabel>
+    <relationshipName>Deal_Source_Capital_Sources</relationshipName>
+    <required>true</required>
+    <type>Lookup</type>
+</CustomField>

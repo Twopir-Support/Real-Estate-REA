@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Asset_Management</fullName>
+    <active>true</active>
+    <description>Asset Management deal record type.</description>
+    <label>Asset Management</label>
+    <picklistValues>
+        <picklist>TC_Deal_Sub_Type__c</picklist>
+        <values>
+            <fullName>Lease Listing - Exclusive</fullName>
+        </values>
+        <values>
+            <fullName>Lease Listing - Non Exclusive</fullName>
+        </values>
+        <values>
+            <fullName>Sale Listing - Exclusive</fullName>
+        </values>
+        <values>
+            <fullName>Sale Listing - Non-Exclusive</fullName>
+        </values>
+        <values>
+            <fullName>Sale or Lease</fullName>
+        </values>
+        <values>
+            <fullName>Sublease</fullName>
+        </values>
+        <values>
+            <fullName>New Lease</fullName>
+        </values>
+        <values>
+            <fullName>Renewal</fullName>
+        </values>
+        <values>
+            <fullName>Expansion</fullName>
+        </values>
+        <values>
+            <fullName>Relocation</fullName>
+        </values>
+        <values>
+            <fullName>Acquisition</fullName>
+        </values>
+        <values>
+            <fullName>Disposition</fullName>
+        </values>
+        <values>
+            <fullName>Refinance</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Stage__c</picklist>
+        <values>
+            <fullName>Prospect</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Pitch / Proposal</fullName>
+        </values>
+        <values>
+            <fullName>Touring</fullName>
+        </values>
+        <values>
+            <fullName>LOI</fullName>
+        </values>
+        <values>
+            <fullName>Negotiation</fullName>
+        </values>
+        <values>
+            <fullName>Lease / PSA Out</fullName>
+        </values>
+        <values>
+            <fullName>Executed</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Status__c</picklist>
+        <values>
+            <fullName>Open</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Won</fullName>
+        </values>
+        <values>
+            <fullName>Lost</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Client_Role__c</picklist>
+        <values>
+            <fullName>Tenant</fullName>
+        </values>
+        <values>
+            <fullName>Owner/Landlord</fullName>
+        </values>
+        <values>
+            <fullName>Buyer</fullName>
+        </values>
+        <values>
+            <fullName>Seller</fullName>
+        </values>
+        <values>
+            <fullName>Borrower</fullName>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Client_Contact_Role__c</picklist>
+        <values>
+            <fullName>Tenant</fullName>
+        </values>
+        <values>
+            <fullName>Owner/Landlord</fullName>
+        </values>
+        <values>
+            <fullName>Buyer</fullName>
+        </values>
+        <values>
+            <fullName>Seller</fullName>
+        </values>
+        <values>
+            <fullName>Borrower</fullName>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Lead_Broker_Role__c</picklist>
+        <values>
+            <fullName>Lead</fullName>
+        </values>
+        <values>
+            <fullName>Co-Lead</fullName>
+        </values>
+        <values>
+            <fullName>Support</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Source__c</picklist>
+        <values>
+            <fullName>Referral</fullName>
+        </values>
+        <values>
+            <fullName>Existing Client</fullName>
+        </values>
+        <values>
+            <fullName>Inquiry</fullName>
+        </values>
+        <values>
+            <fullName>Cold Call</fullName>
+        </values>
+        <values>
+            <fullName>Website</fullName>
+        </values>
+        <values>
+            <fullName>Event</fullName>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Rent_Type__c</picklist>
+        <values>
+            <fullName>NNN</fullName>
+        </values>
+        <values>
+            <fullName>Gross</fullName>
+        </values>
+        <values>
+            <fullName>Modified Gross</fullName>
+        </values>
+        <values>
+            <fullName>Full Service</fullName>
+        </values>
+        <values>
+            <fullName>Industrial Gross</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Total_Rent_Calculation__c</picklist>
+        <values>
+            <fullName>Annual Ratio Rent</fullName>
+        </values>
+        <values>
+            <fullName>Monthly Rate</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Gross_Fee_Method__c</picklist>
+        <values>
+            <fullName>Percent</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Amount</fullName>
+        </values>
+        <values>
+            <fullName>By $ per SF</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Lost_Reason__c</picklist>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+        </values>
+        <values>
+            <fullName>Client Stayed / Renewed</fullName>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+        </values>
+        <values>
+            <fullName>Timing</fullName>
+        </values>
+        <values>
+            <fullName>Deal Fell Through</fullName>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+        </values>
+    </picklistValues>
+</RecordType>

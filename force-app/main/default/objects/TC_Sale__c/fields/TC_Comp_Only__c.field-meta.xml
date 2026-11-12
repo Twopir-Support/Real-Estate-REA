@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Comp_Only__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Checked when the sale was not brokered by us.</inlineHelpText>
+    <label>Comp Only</label>
+    <type>Checkbox</type>
+</CustomField>

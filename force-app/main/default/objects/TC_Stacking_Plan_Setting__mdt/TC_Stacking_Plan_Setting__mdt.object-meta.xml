@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Which property record types show the stacking plan, and its colours (mirrors the AscendixRE Stacking Plan metadata record).</description>
+    <label>TC Stacking Plan Setting</label>
+    <pluralLabel>TC Stacking Plan Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

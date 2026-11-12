@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Gross_Fee_Amount__c</fullName>
+    <inlineHelpText>Calculated for Percent and $ per SF; entered directly for Amount.</inlineHelpText>
+    <label>Gross Fee Amount</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

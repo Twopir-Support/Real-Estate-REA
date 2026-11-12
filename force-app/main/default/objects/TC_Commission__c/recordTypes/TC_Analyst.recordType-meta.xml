@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Analyst</fullName>
+    <active>true</active>
+    <description>Analyst commission record type.</description>
+    <label>Analyst</label>
+    <picklistValues>
+        <picklist>TC_Fee_Method__c</picklist>
+        <values>
+            <fullName>Percent</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Amount</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Status__c</picklist>
+        <values>
+            <fullName>Projected</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Earned</fullName>
+        </values>
+        <values>
+            <fullName>Invoiced</fullName>
+        </values>
+        <values>
+            <fullName>Paid</fullName>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+        </values>
+    </picklistValues>
+</RecordType>

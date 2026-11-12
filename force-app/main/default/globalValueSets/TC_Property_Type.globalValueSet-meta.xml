@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Office</fullName>
+        <default>false</default>
+        <label>Office</label>
+    </customValue>
+    <customValue>
+        <fullName>Retail</fullName>
+        <default>false</default>
+        <label>Retail</label>
+    </customValue>
+    <customValue>
+        <fullName>Industrial</fullName>
+        <default>false</default>
+        <label>Industrial</label>
+    </customValue>
+    <customValue>
+        <fullName>Multifamily</fullName>
+        <default>false</default>
+        <label>Multifamily</label>
+    </customValue>
+    <customValue>
+        <fullName>Land</fullName>
+        <default>false</default>
+        <label>Land</label>
+    </customValue>
+    <customValue>
+        <fullName>Hospitality</fullName>
+        <default>false</default>
+        <label>Hospitality</label>
+    </customValue>
+    <customValue>
+        <fullName>Mixed Use</fullName>
+        <default>false</default>
+        <label>Mixed Use</label>
+    </customValue>
+    <customValue>
+        <fullName>Special Purpose</fullName>
+        <default>false</default>
+        <label>Special Purpose</label>
+    </customValue>
+    <masterLabel>TC Property Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Lease_Expiration_After_Commencement</fullName>
+    <active>true</active>
+    <description>Lease Expiration must be after Lease Commencement.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Lease_Expiration__c)), NOT(ISBLANK(TC_Lease_Commencement__c)), TC_Lease_Expiration__c &lt;= TC_Lease_Commencement__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Lease_Expiration__c</errorDisplayField>
+    <errorMessage>Lease Expiration must be after Lease Commencement.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Prospective_Buyer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Prospective Buyer</label>
+    <referenceTo>TC_Prospective_Buyer__c</referenceTo>
+    <relationshipLabel>Offers (Prospective Buyer)</relationshipLabel>
+    <relationshipName>Offer_Prospective_Buyers</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Current_Lease__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Current Lease</label>
+    <referenceTo>TC_Lease__c</referenceTo>
+    <relationshipLabel>Units (Current Lease)</relationshipLabel>
+    <relationshipName>Unit_Current_Leases</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

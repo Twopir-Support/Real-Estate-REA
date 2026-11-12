@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Office</fullName>
+    <active>true</active>
+    <description>Office property record type.</description>
+    <label>Office</label>
+    <picklistValues>
+        <picklist>TC_Property_Type__c</picklist>
+        <values>
+            <fullName>Office</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Property_Subtype__c</picklist>
+        <values>
+            <fullName>CBD</fullName>
+        </values>
+        <values>
+            <fullName>Suburban</fullName>
+        </values>
+        <values>
+            <fullName>Creative / Loft</fullName>
+        </values>
+        <values>
+            <fullName>Medical Office</fullName>
+        </values>
+        <values>
+            <fullName>Strip Center</fullName>
+        </values>
+        <values>
+            <fullName>Neighborhood Center</fullName>
+        </values>
+        <values>
+            <fullName>Power Center</fullName>
+        </values>
+        <values>
+            <fullName>Mall</fullName>
+        </values>
+        <values>
+            <fullName>Freestanding</fullName>
+        </values>
+        <values>
+            <fullName>Street Retail</fullName>
+        </values>
+        <values>
+            <fullName>Warehouse / Distribution</fullName>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+        </values>
+        <values>
+            <fullName>Flex / R&amp;D</fullName>
+        </values>
+        <values>
+            <fullName>Cold Storage</fullName>
+        </values>
+        <values>
+            <fullName>Data Center</fullName>
+        </values>
+        <values>
+            <fullName>Garden</fullName>
+        </values>
+        <values>
+            <fullName>Mid-Rise</fullName>
+        </values>
+        <values>
+            <fullName>High-Rise</fullName>
+        </values>
+        <values>
+            <fullName>Student Housing</fullName>
+        </values>
+        <values>
+            <fullName>Senior Housing</fullName>
+        </values>
+        <values>
+            <fullName>Commercial Land</fullName>
+        </values>
+        <values>
+            <fullName>Industrial Land</fullName>
+        </values>
+        <values>
+            <fullName>Residential Land</fullName>
+        </values>
+        <values>
+            <fullName>Agricultural</fullName>
+        </values>
+        <values>
+            <fullName>Full Service Hotel</fullName>
+        </values>
+        <values>
+            <fullName>Limited Service Hotel</fullName>
+        </values>
+        <values>
+            <fullName>Resort</fullName>
+        </values>
+        <values>
+            <fullName>Office / Retail</fullName>
+        </values>
+        <values>
+            <fullName>Residential / Retail</fullName>
+        </values>
+        <values>
+            <fullName>Self Storage</fullName>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+        </values>
+        <values>
+            <fullName>Religious</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Building_Class__c</picklist>
+        <values>
+            <fullName>A</fullName>
+        </values>
+        <values>
+            <fullName>B</fullName>
+        </values>
+        <values>
+            <fullName>C</fullName>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TC_Building_Status__c</picklist>
+        <values>
+            <fullName>Existing</fullName>
+        </values>
+        <values>
+            <fullName>Under Construction</fullName>
+        </values>
+        <values>
+            <fullName>Proposed</fullName>
+        </values>
+        <values>
+            <fullName>Under Renovation</fullName>
+        </values>
+    </picklistValues>
+</RecordType>

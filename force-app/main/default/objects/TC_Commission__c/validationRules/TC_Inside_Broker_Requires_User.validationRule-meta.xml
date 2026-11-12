@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Inside_Broker_Requires_User</fullName>
+    <active>true</active>
+    <description>Choose the Broker (User) for an Inside Broker commission.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND($RecordType.DeveloperName = &quot;TC_Inside_Broker&quot;, ISBLANK(TC_Broker__c))
+)</errorConditionFormula>
+    <errorDisplayField>TC_Broker__c</errorDisplayField>
+    <errorMessage>Choose the Broker (User) for an Inside Broker commission.</errorMessage>
+</ValidationRule>

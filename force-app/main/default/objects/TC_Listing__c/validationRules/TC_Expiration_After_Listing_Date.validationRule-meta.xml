@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Expiration_After_Listing_Date</fullName>
+    <active>true</active>
+    <description>Expiration Date must be after the Listing Date.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Expiration_Date__c)), NOT(ISBLANK(TC_Listing_Date__c)), TC_Expiration_Date__c &lt;= TC_Listing_Date__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Expiration_Date__c</errorDisplayField>
+    <errorMessage>Expiration Date must be after the Listing Date.</errorMessage>
+</ValidationRule>

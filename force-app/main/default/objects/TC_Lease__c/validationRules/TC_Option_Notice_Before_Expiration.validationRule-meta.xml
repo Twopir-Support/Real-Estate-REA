@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Option_Notice_Before_Expiration</fullName>
+    <active>true</active>
+    <description>Option Notice Date must be before the Expiration Date.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Option_Notice_Date__c)), TC_Option_Notice_Date__c &gt;= TC_Expiration_Date__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Option_Notice_Date__c</errorDisplayField>
+    <errorMessage>Option Notice Date must be before the Expiration Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Min_Divisible_Within_Size</fullName>
+    <active>true</active>
+    <description>Min Divisible cannot be larger than the available Size.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Min_Divisible__c)), TC_Min_Divisible__c &gt; TC_Size__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Min_Divisible__c</errorDisplayField>
+    <errorMessage>Min Divisible cannot be larger than the available Size.</errorMessage>
+</ValidationRule>

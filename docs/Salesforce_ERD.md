@@ -1,182 +1,101 @@
-# Entity Relationship Diagram — REA Commercial Real Estate CRM
+# Entity Relationship Diagram — TC Commercial Real Estate
 
-Status: **PROPOSED.** Field-level detail is in [Salesforce_Data_Model.md](Salesforce_Data_Model.md).
+This mirrors the AscendixRE object structure documented publicly. Field-level
+detail is in [Salesforce_Data_Model.md](Salesforce_Data_Model.md).
 
-- **Solid lines (`||--o{`)**: the child can't exist without its parent
-  (master-detail, or a required lookup).
-- **Dotted lines (`|o..o{`)**: optional lookups.
-- Standard objects are written in CAPS.
+How to read the diagram:
+- **Solid lines** are master-detail relationships or required lookups.
+- **Dotted lines** are optional lookups.
+- Standard objects are in capitals.
+
+## Core brokerage model
 
 ```mermaid
 erDiagram
-    ACCOUNT ||--o{ CONTACT : "employs"
-    ACCOUNT ||--o{ Capital_Source__c : "MD: lending/investing programs"
-    ACCOUNT |o..o{ Property__c : "Owner / Property Manager"
+    ACCOUNT ||--o{ CONTACT : employs
+    ACCOUNT |o..o{ TC_Property__c : "Owner/Landlord, Property Manager, Listing Broker Co."
+    TC_Property__c ||--o{ TC_Unit__c : "MD: units / suites"
+    TC_Unit_Profile__c |o..o{ TC_Unit__c : "template"
+    TC_Property__c ||--o{ TC_Availability__c : "vacant space"
+    TC_Unit__c |o..o{ TC_Availability__c : "offered as"
+    TC_Property__c ||--o{ TC_Listing__c : "listing agreements"
+    TC_Listing__c |o..o{ TC_Availability__c : "markets"
+    TC_Property__c ||--o{ TC_Lease__c : "lease abstracts"
+    TC_Unit__c |o..o{ TC_Lease__c : "occupied under"
+    ACCOUNT ||--o{ TC_Lease__c : "tenant"
+    TC_Lease__c ||--o{ TC_Lease_Period__c : "MD: rent table"
+    TC_Property__c ||--o{ TC_Sale__c : "sale history / comps"
+    TC_Property__c |o..o{ TC_Market_Rent__c : "benchmarks"
 
-    Property__c ||--o{ Property_Unit__c : "MD: suites / spaces"
-    Property__c ||--o{ Listing__c : "marketed by"
-    Property__c ||--o{ Availability__c : "has available space"
-    Property__c ||--o{ Lease__c : "leased under"
-    Property__c |o..o{ Deal__c : "subject of"
-    Property__c |o..o{ Inquiry__c : "inquired about"
+    TC_Inquiry__c ||--o{ TC_Prospective_Listing__c : "MD: listings proposed"
+    TC_Listing__c ||--o{ TC_Prospective_Listing__c : "prospective inquiries"
+    TC_Listing__c |o..o{ TC_Inquiry__c : "inquired about"
+    TC_Inquiry__c |o..o| TC_Deal__c : "converts to"
 
-    Property_Unit__c |o..o{ Availability__c : "offered as"
-    Property_Unit__c |o..o{ Lease__c : "occupied under"
-    Listing__c |o..o{ Availability__c : "groups"
-    Listing__c |o..o{ Deal__c : "generates"
-    ACCOUNT ||--o{ Listing__c : "listing client"
+    TC_Property__c |o..o{ TC_Deal__c : "subject property"
+    TC_Availability__c |o..o{ TC_Deal__c : "space"
+    ACCOUNT |o..o{ TC_Deal__c : "client / tenant / landlord / buyer / lender"
+    TC_Deal__c ||--o{ TC_Deal_Period__c : "MD: rent table"
+    TC_Deal__c ||--o{ TC_Commission__c : "MD: commissions"
+    TC_Deal__c ||--o{ TC_Prospective_Buyer__c : "MD: buyers (seller rep)"
+    TC_Deal__c ||--o{ TC_Offer__c : "MD: offers"
+    TC_Prospective_Buyer__c |o..o{ TC_Offer__c : "made by"
+    TC_Deal__c |o..o{ TC_Lease__c : "Won: creates"
+    TC_Deal__c |o..o{ TC_Sale__c : "Won: creates"
+    TC_Deal__c |o..o{ TC_Listing__c : "Listing Pursuit Won: creates"
+    USER |o..o{ TC_Commission__c : "inside broker"
+```
 
-    CONTACT ||--o{ Inquiry__c : "submits"
-    Inquiry__c |o..o| Deal__c : "converts to"
-    Availability__c |o..o{ Deal__c : "transacted in"
+## Capital markets and relationships
 
-    ACCOUNT ||--o{ Deal__c : "client"
-    Deal__c ||--o{ Deal_Party__c : "MD: parties & roles"
-    ACCOUNT ||--o{ Deal_Party__c : "plays role"
-    Deal__c ||--o{ Commission__c : "MD: broker splits"
-    Commission_Plan__c |o..o{ Deal__c : "fee rules"
-    Capital_Source__c |o..o{ Deal__c : "finances"
-    Deal__c |o..o{ Lease__c : "results in"
-
-    ACCOUNT ||--o{ Lease__c : "tenant / landlord"
-    Lease__c ||--o{ Lease_Period__c : "MD: rent schedule"
-    Property__c ||--o{ Sale__c : "sale history / comps"
-    Deal__c |o..o{ Sale__c : "results in"
-    Deal__c |o..o{ Listing__c : "Listing Pursuit won"
-    Inquiry__c ||--o{ Inquiry_Match__c : "MD: prospective spaces"
-    Availability__c |o..o{ Inquiry_Match__c : "proposed"
-    Listing__c |o..o{ Inquiry_Match__c : "proposed"
-    USER |o..o{ Commission__c : "internal broker"
-    CONTACT |o..o{ Commission__c : "outside broker"
-
-    Property__c {
-        Text Name
-        Picklist Property_Type__c
-        Picklist Building_Class__c
-        Geolocation Location__c
-        Number Total_Building_SF__c
-        Number Leased_SF__c "Apex rollup"
-        Percent Occupancy_Pct__c "formula"
-    }
-    Property_Unit__c {
-        Text Name "Suite #"
-        MD Property__c
-        Number Floor__c
-        Number Area_SF__c
-        Picklist Unit_Status__c
-        Lookup Current_Lease__c "Apex"
-    }
-    Listing__c {
-        Picklist Listing_Type__c
-        Picklist Listing_Status__c
-        Date Agreement_Expiration__c
-        Currency Asking_Price__c
-        Currency Asking_Rent_PSF__c
-    }
-    Availability__c {
-        Picklist Status__c
-        Number Available_SF__c
-        Currency Asking_Rent_PSF__c
-        Date Date_Available__c
-    }
-    Inquiry__c {
-        Picklist Inquiry_Type__c
-        Picklist Status__c
-        Number Min_SF__c
-        Number Max_SF__c
-        Lookup Converted_Deal__c
-    }
-    Deal__c {
-        Picklist Deal_Type__c
-        Picklist Stage__c
-        Currency Transaction_Value__c "Apex"
-        Currency Gross_Fee__c "Apex"
-        Date Est_Close_Date__c
-    }
-    Deal_Party__c {
-        MD Deal__c
-        Lookup Account__c
-        Picklist Role__c
-    }
-    Lease__c {
-        Picklist Lease_Type__c
-        Picklist Status__c
-        Date Commencement_Date__c
-        Date Expiration_Date__c
-        Number Leased_SF__c
-        Currency Total_Lease_Value__c "Apex"
-    }
-    Commission__c {
-        MD Deal__c
-        Picklist Payee_Type__c
-        Percent Split_Pct__c
-        Currency Gross_Commission__c "Apex"
-        Picklist Status__c
-    }
-    Commission_Plan__c {
-        Picklist Default_Fee_Basis__c
-        Percent Default_Fee_Pct__c
-        Percent House_Split_Pct__c
-    }
-    Capital_Source__c {
-        MD Account__c
-        Picklist Source_Type__c
-        MultiPicklist Capital_Types__c
-        Currency Max_Deal_Size__c
-    }
-    Lease_Period__c {
-        MD Lease__c
-        Date Period_Start__c
-        Date Period_End__c
-        Currency Rate_PSF__c
-        Currency Period_Rent__c "Apex"
-    }
-    Sale__c {
-        Lookup Property__c
-        Date Sale_Date__c
-        Currency Sale_Price__c
-        Percent Cap_Rate_Pct__c
-    }
-    Inquiry_Match__c {
-        MD Inquiry__c
-        Lookup Availability__c
-        Number Match_Score__c
-        Picklist Status__c
-        Checkbox Is_Primary__c
-    }
+```mermaid
+erDiagram
+    TC_Deal__c ||--o{ TC_Deal_Source__c : "MD: lenders approached"
+    TC_Capital_Source__c ||--o{ TC_Deal_Source__c : "capital source"
+    TC_Deal_Source__c ||--o{ TC_Term_Sheet__c : "MD: quotes"
+    TC_Deal__c ||--o{ TC_Deal_Property__c : "MD: multiple properties"
+    TC_Property__c ||--o{ TC_Deal_Property__c : "included in"
+    ACCOUNT |o..o{ TC_Capital_Source__c : "institution"
+    USER ||--o{ TC_Relationship__c : "internal user"
+    TC_Relationship__c }o..o| ACCOUNT : "for"
+    TC_Relationship__c }o..o| TC_Property__c : "for"
+    TC_Relationship__c }o..o| TC_Listing__c : "for"
+    TC_Relationship__c }o..o| TC_Deal__c : "for"
 ```
 
 ## Relationship summary
 
-| Child | Parent | Type | Delete behaviour |
+| Child | Parent | Type | On parent delete |
 |---|---|---|---|
-| Property_Unit__c | Property__c | Master-detail | Cascade |
-| Deal_Party__c | Deal__c | Master-detail | Cascade |
-| Commission__c | Deal__c | Master-detail | Cascade (the Closed Won lock stops accidental deletes) |
-| Capital_Source__c | Account | Master-detail | Cascade |
-| Lease_Period__c | Lease__c | Master-detail | Cascade |
-| Inquiry_Match__c | Inquiry__c | Master-detail | Cascade |
-| Sale__c | Property__c | Lookup (required) | Restrict |
-| Listing__c, Availability__c, Lease__c | Property__c | Lookup (required) | Restrict delete: a property with leases or listings can't be deleted |
-| Availability__c, Lease__c | Property_Unit__c | Lookup | Clear |
-| Deal__c | Property / Listing / Availability / Inquiry / Capital Source / Commission Plan | Lookup | Clear |
-| Lease__c | Deal__c | Lookup | Clear |
-| Inquiry__c | Contact | Lookup (required) | Restrict |
-| Deal__c, Listing__c, Lease__c | Account (client / tenant / landlord) | Lookup | Restrict on required lookups |
+| TC_Unit__c | TC_Property__c | Master-detail | Cascade |
+| TC_Deal_Period__c, TC_Commission__c, TC_Prospective_Buyer__c, TC_Offer__c, TC_Deal_Source__c, TC_Deal_Property__c | TC_Deal__c | Master-detail | Cascade |
+| TC_Lease_Period__c | TC_Lease__c | Master-detail | Cascade |
+| TC_Prospective_Listing__c | TC_Inquiry__c | Master-detail | Cascade |
+| TC_Term_Sheet__c | TC_Deal_Source__c | Master-detail | Cascade |
+| TC_Availability__c, TC_Listing__c, TC_Lease__c, TC_Sale__c | TC_Property__c | Required lookup | Delete blocked |
+| TC_Lease__c | Account (Tenant) | Required lookup | Delete blocked |
+| TC_Prospective_Listing__c | TC_Listing__c | Required lookup | Delete blocked |
+| TC_Deal_Source__c | TC_Capital_Source__c | Required lookup | Delete blocked |
+| All other lookups | – | Optional lookup | Field cleared |
 
-## Key automated data flows
+## Automated data flows
 
 ```mermaid
 flowchart LR
-    INQ[Inquiry] -- "Find Matches (Apex)" --> IM[Inquiry Match rows] --> AV[Availability]
-    INQ -- "Convert (Apex)" --> DEAL[Deal]
-    DEAL -- "Closed Won + lease type" --> LEASE[Lease + rent schedule]
-    DEAL -- "Closed Won + buyer/seller rep" --> SALE[Sale]
-    DEAL -- "Closed Won + listing pursuit" --> LIST[Listing]
-    DEAL -- "Closed Won" --> AVS[Availability → Leased/Sold]
-    DEAL -- "fee recalculated" --> COM[Commission splits]
+    INQ[Inquiry] -- "Convert" --> ACC[Account + Contact] & DEAL[Deal]
+    INQ -- "Find Matches (TC extra)" --> PL[Prospective Listings]
+    DEAL -- "Won · Tenant/Landlord Rep" --> LEASE[Lease + Lease Periods]
+    DEAL -- "Won · Buyer/Seller Rep" --> SALE[Sale]
+    DEAL -- "Won · Listing Pursuit" --> LIST[Listing]
+    DEAL -- "Won" --> AV[Availability → Closed]
+    DEAL -- "fee recalculated" --> COM[Commissions: gross, house, net]
+    DP[Deal Periods] -- "total rent" --> DEAL
     LEASE -- "Active" --> UNIT[Unit: Occupied, current tenant]
-    LEASE -- "SF rollup" --> PROP[Property: Leased SF / Occupancy]
-    AV -- "SF rollup" --> PROP
-    SCHED[Scheduled Flow daily] -- "18/12/6 months before expiry" --> TASK[Follow-up Tasks + email alert]
+    LEASE & AV -- "SF roll-up" --> PROP[Property: leased, available, occupancy]
+    SCHED[Daily schedule] -- "18 / 12 / 6 months" --> TASK[Lease expiration tasks]
 ```
+
+The field mappings used on deal close are records of
+`TC_Object_Field_Mapping__mdt`, in the groups `DEAL_TO_LEASE`, `DEAL_TO_SALE`,
+`DEAL_TO_LISTING`, `DEAL_TO_AVAILABILITY` and `PROPERTY_TO_LISTING`. An admin
+can change them without editing code.

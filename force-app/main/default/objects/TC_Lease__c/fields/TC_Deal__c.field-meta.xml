@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Deal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Deal</label>
+    <referenceTo>TC_Deal__c</referenceTo>
+    <relationshipLabel>Leases (Deal)</relationshipLabel>
+    <relationshipName>Lease_Deals</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

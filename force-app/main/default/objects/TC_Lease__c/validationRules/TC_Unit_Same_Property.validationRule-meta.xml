@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Unit_Same_Property</fullName>
+    <active>true</active>
+    <description>The selected Unit belongs to a different Property.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.TC_Bypass_Settings__c.TC_Bypass_Validation_Rules__c),
+    AND(NOT(ISBLANK(TC_Unit__c)), TC_Unit__r.TC_Property__c &lt;&gt; TC_Property__c)
+)</errorConditionFormula>
+    <errorDisplayField>TC_Unit__c</errorDisplayField>
+    <errorMessage>The selected Unit belongs to a different Property.</errorMessage>
+</ValidationRule>

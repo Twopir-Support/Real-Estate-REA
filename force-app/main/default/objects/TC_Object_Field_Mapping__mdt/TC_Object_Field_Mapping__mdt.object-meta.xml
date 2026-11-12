@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Source-to-target field mapping used when a deal closes and when listings are created (mirrors AscendixRE Object Field Mapping).</description>
+    <label>TC Object Field Mapping</label>
+    <pluralLabel>TC Object Field Mappings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

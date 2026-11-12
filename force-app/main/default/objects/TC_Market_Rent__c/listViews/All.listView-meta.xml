@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>TC_Market__c</columns>
+    <columns>TC_Property_Type__c</columns>
+    <columns>TC_Building_Class__c</columns>
+    <columns>TC_Average_Rate__c</columns>
+    <columns>TC_Effective_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>
