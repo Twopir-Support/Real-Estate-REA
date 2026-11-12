@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>TC_Property__c$Name</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Property_Type__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Building_Class__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_City__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Total_Size__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Leased_SF__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Available_SF__c</field>
+    </columns>
+    <columns>
+        <field>TC_Property__c$TC_Occupancy__c</field>
+    </columns>
+    <description>Properties with size, leased and available area and occupancy.</description>
+    <format>Tabular</format>
+    <name>TC Property Occupancy</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>TC_Properties__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>TC_Property__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>TC_Property__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

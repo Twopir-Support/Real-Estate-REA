@@ -1,0 +1,2 @@
+23/23 passed
+PASS Won deal commissions all Earned (none left Projected) -> 2 earned

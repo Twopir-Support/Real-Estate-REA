@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>TC_Inquiry__c$Name</field>
+    </columns>
+    <columns>
+        <field>TC_Inquiry__c$TC_Inquiry_Type__c</field>
+    </columns>
+    <columns>
+        <field>TC_Inquiry__c$TC_Status__c</field>
+    </columns>
+    <columns>
+        <field>TC_Inquiry__c$TC_Listing__c</field>
+    </columns>
+    <description>Inquiries by source and status (foot traffic).</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>TC_Inquiry__c$TC_Source__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>TC Inquiries by Source</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>TC_Inquiries__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>TC_Inquiry__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
