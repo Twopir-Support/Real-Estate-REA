@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Property Search" icon-name="custom:custom24">
+        <div class="layout slds-p-horizontal_medium" onkeyup={handleKey}>
+            <aside class="criteria" aria-label="Search criteria">
+                <lightning-combobox label="Property type" data-field="propertyType" value={criteria.propertyType} options={typeOptions} onchange={handleField}></lightning-combobox>
+                <lightning-combobox label="Class" data-field="buildingClass" value={criteria.buildingClass} options={classOptions} onchange={handleField}></lightning-combobox>
+                <lightning-input label="City" data-field="city" value={criteria.city} onchange={handleField}></lightning-input>
+                <lightning-input label="Market or submarket" data-field="market" value={criteria.market} onchange={handleField}></lightning-input>
+                <div class="pair">
+                    <lightning-input type="number" label="Min size (SF)" data-field="minSize" value={criteria.minSize} onchange={handleField}></lightning-input>
+                    <lightning-input type="number" label="Max size (SF)" data-field="maxSize" value={criteria.maxSize} onchange={handleField}></lightning-input>
+                </div>
+                <div class="pair">
+                    <lightning-input type="number" label="Min available (SF)" data-field="minAvailable" value={criteria.minAvailable} onchange={handleField}></lightning-input>
+                    <lightning-input type="number" label="Max rate ($/SF)" step="0.01" data-field="maxRate" value={criteria.maxRate} onchange={handleField}></lightning-input>
+                </div>
+                <lightning-input type="toggle" label="Has available space" data-field="hasAvailability" checked={criteria.hasAvailability} onchange={handleField} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                <fieldset class="radius">
+                    <legend class="slds-text-title_caps">Radius search</legend>
+                    <div class="pair">
+                        <lightning-input type="number" label="Latitude" step="0.000001" data-field="latitude" value={criteria.latitude} onchange={handleField}></lightning-input>
+                        <lightning-input type="number" label="Longitude" step="0.000001" data-field="longitude" value={criteria.longitude} onchange={handleField}></lightning-input>
+                    </div>
+                    <lightning-input type="number" label="Radius (miles)" step="0.5" data-field="radiusMiles" value={criteria.radiusMiles} onchange={handleField}></lightning-input>
+                    <lightning-button class="slds-m-top_x-small" label="Use selected property as centre" onclick={useSelectedAsCenter} disabled={centerDisabled}></lightning-button>
+                </fieldset>
+                <div class="buttons">
+                    <lightning-button label="Reset" onclick={reset}></lightning-button>
+                    <lightning-button label="Search" variant="brand" icon-name="utility:search" onclick={search}></lightning-button>
+                </div>
+            </aside>
+            <section class="results" aria-label="Results">
+                <template lwc:if={loading}><lightning-spinner alternative-text="Searching" size="small"></lightning-spinner></template>
+                <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+                <p class="summary"><strong>{countLabel}</strong> <span class="slds-text-color_weak">{radiusLabel}</span></p>
+                <template lwc:if={hasMarkers}>
+                    <div class="map"><lightning-map map-markers={markers} list-view="hidden" onmarkerselect={handleMarker}></lightning-map></div>
+                </template>
+                <template lwc:if={hasResults}>
+                    <div class="table">
+                        <lightning-datatable key-field="Id" data={results} columns={columns} max-row-selection="1" onrowselection={handleRowSelection}></lightning-datatable>
+                    </div>
+                </template>
+                <template lwc:else><p class="slds-text-color_weak slds-p-vertical_medium">No properties match these criteria.</p></template>
+            </section>
+        </div>
+    </lightning-card>
+</template>

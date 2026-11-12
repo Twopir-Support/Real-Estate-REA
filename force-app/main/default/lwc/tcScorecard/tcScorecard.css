@@ -1,0 +1,4 @@
+.scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 0.5rem; background: var(--slds-g-color-neutral-base-100, #fff); border: 1px solid var(--slds-g-color-border-base-1, #e5e5e5); border-radius: 0.25rem; padding: 0.75rem; }
+.tile { display: flex; flex-direction: column; padding-left: 0.625rem; border-left: 3px solid #0f5f74; }
+.label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--slds-g-color-neutral-base-50, #747474); }
+.value { font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }

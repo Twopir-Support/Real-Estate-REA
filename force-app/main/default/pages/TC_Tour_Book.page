@@ -1,0 +1,52 @@
+<apex:page controller="TC_DocumentController" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false">
+<html><head><c:TC_Document_Styles /></head><body>
+<div class="stop">
+    <div class="brand">
+        <div class="co">{!company} &middot; Property Tour</div>
+        <h1>Tour Book</h1>
+        <div class="muted">Prepared for {!inquiry.TC_First_Name__c} {!inquiry.TC_Last_Name__c} {!inquiry.TC_Company_Name__c} &middot; {!generatedOn}</div>
+    </div>
+    <h2>Requirement</h2>
+    <table class="facts">
+        <tr><td class="k">Type</td><td>{!inquiry.TC_Inquiry_Type__c}</td></tr>
+        <tr><td class="k">Size</td><td><apex:outputText value="{0,number,#,##0} to {1,number,#,##0} SF"><apex:param value="{!inquiry.TC_Size_Min__c}"/><apex:param value="{!inquiry.TC_Size_Max__c}"/></apex:outputText></td></tr>
+        <tr><td class="k">Budget</td><td><apex:outputText value="up to {0,number,$#,##0.00} / SF / yr"><apex:param value="{!inquiry.TC_Max_Rate__c}"/></apex:outputText></td></tr>
+    </table>
+    <h2>Tour Stops</h2>
+    <table class="grid">
+        <tr><th class="num">#</th><th>Property</th><th>Address</th><th class="num">Available (SF)</th><th class="num">Asking ($/SF/yr)</th></tr>
+        <apex:repeat value="{!stops}" var="s">
+            <tr>
+                <td class="num">{!s.stopNumber}</td>
+                <td>{!s.property.Name}</td>
+                <td>{!s.property.TC_Full_Address__c}</td>
+                <td class="num"><apex:outputText value="{0,number,#,##0}"><apex:param value="{!s.listing.TC_Total_Available_SF__c}"/></apex:outputText></td>
+                <td class="num"><apex:outputText value="{0,number,#,##0.00}"><apex:param value="{!s.listing.TC_Asking_Rate__c}"/></apex:outputText></td>
+            </tr>
+        </apex:repeat>
+    </table>
+</div>
+<apex:repeat value="{!stops}" var="s">
+    <div class="stop">
+        <div class="brand">
+            <div class="co">Stop {!s.stopNumber}</div>
+            <h1>{!s.property.Name}</h1>
+            <div class="muted">{!s.property.TC_Full_Address__c} &middot; {!s.property.TC_Submarket__c}</div>
+        </div>
+        <apex:image value="{!s.property.TC_Primary_Image_URL__c}" styleClass="hero" rendered="{!NOT(ISBLANK(s.property.TC_Primary_Image_URL__c))}"/>
+        <table class="facts">
+            <tr><td class="k">Listing</td><td>{!s.listing.Name} ({!s.listing.RecordType.Name})</td></tr>
+            <tr><td class="k">Type / class</td><td>{!s.property.TC_Property_Type__c} &middot; Class {!s.property.TC_Building_Class__c}</td></tr>
+            <tr><td class="k">Building size</td><td><apex:outputText value="{0,number,#,##0} SF"><apex:param value="{!s.property.TC_Total_Size__c}"/></apex:outputText></td></tr>
+            <tr><td class="k">Available</td><td><apex:outputText value="{0,number,#,##0} SF"><apex:param value="{!s.listing.TC_Total_Available_SF__c}"/></apex:outputText></td></tr>
+            <tr><td class="k">Asking rate</td><td><apex:outputText value="{0,number,$#,##0.00} / SF / yr"><apex:param value="{!s.listing.TC_Asking_Rate__c}"/></apex:outputText> {!s.listing.TC_Rent_Type__c}</td></tr>
+            <tr><td class="k">Why it fits</td><td>{!s.notes}</td></tr>
+        </table>
+        <apex:outputPanel rendered="{!NOT(ISBLANK(s.property.TC_Description__c))}" layout="block">
+            <h2>About the property</h2>
+            <div><apex:outputText value="{!s.property.TC_Description__c}"/></div>
+        </apex:outputPanel>
+    </div>
+</apex:repeat>
+</body></html>
+</apex:page>

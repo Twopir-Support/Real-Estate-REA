@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Images" icon-name="standard:photo">
+        <div class="slds-p-horizontal_medium slds-p-bottom_small">
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={hasImages}>
+                <figure class="stage">
+                    <img src={current.url} alt={current.title} class="main"/>
+                    <template lwc:if={multiple}>
+                        <button class="nav nav_prev slds-button slds-button_icon slds-button_icon-inverse" onclick={prev} title="Previous image"><lightning-icon icon-name="utility:chevronleft" size="small" variant="inverse" alternative-text="Previous"></lightning-icon></button>
+                        <button class="nav nav_next slds-button slds-button_icon slds-button_icon-inverse" onclick={next} title="Next image"><lightning-icon icon-name="utility:chevronright" size="small" variant="inverse" alternative-text="Next"></lightning-icon></button>
+                    </template>
+                    <figcaption>{current.title} · {counter}</figcaption>
+                </figure>
+                <template lwc:if={multiple}>
+                    <div class="thumbs">
+                        <template for:each={thumbs} for:item="t">
+                            <img key={t.key} src={t.url} alt={t.title} class={t.cls} data-idx={t.idx} onclick={pick}/>
+                        </template>
+                    </div>
+                </template>
+            </template>
+            <template lwc:else><p class="slds-text-color_weak">No images yet.</p></template>
+            <lightning-file-upload class="slds-m-top_small" label="Add images" name="images" accept=".png,.jpg,.jpeg,.gif,.webp" record-id={recordId} onuploadfinished={handleUpload} multiple></lightning-file-upload>
+        </div>
+    </lightning-card>
+</template>

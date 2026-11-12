@@ -1,0 +1,51 @@
+<apex:page controller="TC_DocumentController" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false">
+<html><head><c:TC_Document_Styles /></head><body>
+<div class="brand">
+    <div class="co">{!company}</div>
+    <h1>{!property.Name}</h1>
+    <div class="muted">{!property.TC_Full_Address__c} &middot; {!property.TC_Submarket__c}</div>
+</div>
+<apex:image value="{!property.TC_Primary_Image_URL__c}" styleClass="hero" rendered="{!NOT(ISBLANK(property.TC_Primary_Image_URL__c))}"/>
+
+<apex:outputPanel rendered="{!NOT(ISNULL(listing))}" layout="block">
+    <h2>{!listing.RecordType.Name} Listing</h2>
+    <table class="facts">
+        <tr><td class="k">Asking rate</td><td><apex:outputText value="{0,number,$#,##0.00} / SF / yr"><apex:param value="{!listing.TC_Asking_Rate__c}"/></apex:outputText> {!listing.TC_Rent_Type__c}</td></tr>
+        <tr><td class="k">Asking price</td><td><apex:outputText value="{0,number,$#,##0}"><apex:param value="{!listing.TC_Asking_Price__c}"/></apex:outputText></td></tr>
+        <tr><td class="k">Contact</td><td>{!listing.TC_Listing_Broker_Contact__r.Name} &nbsp; {!listing.TC_Listing_Broker_Contact__r.Phone} &nbsp; {!listing.TC_Listing_Broker_Contact__r.Email}</td></tr>
+    </table>
+</apex:outputPanel>
+
+<h2>Property Highlights</h2>
+<table class="facts">
+    <tr><td class="k">Type</td><td>{!property.TC_Property_Type__c} {!property.TC_Property_Subtype__c}</td><td class="k">Class</td><td>{!property.TC_Building_Class__c}</td></tr>
+    <tr><td class="k">Building size</td><td><apex:outputText value="{0,number,#,##0} SF"><apex:param value="{!property.TC_Total_Size__c}"/></apex:outputText></td><td class="k">Floors</td><td>{!property.TC_Number_of_Floors__c}</td></tr>
+    <tr><td class="k">Year built</td><td><apex:outputText value="{0,number,0}"><apex:param value="{!property.TC_Year_Built__c}"/></apex:outputText></td><td class="k">Parking spaces</td><td>{!property.TC_Parking_Spaces__c}</td></tr>
+    <tr><td class="k">Available</td><td><apex:outputText value="{0,number,#,##0} SF"><apex:param value="{!property.TC_Available_SF__c}"/></apex:outputText></td><td class="k">Occupancy</td><td><apex:outputText value="{0,number,0.0}%"><apex:param value="{!property.TC_Occupancy__c}"/></apex:outputText></td></tr>
+</table>
+
+<apex:outputPanel rendered="{!NOT(ISBLANK(property.TC_Description__c))}" layout="block">
+    <h2>Description</h2>
+    <div><apex:outputText value="{!property.TC_Description__c}"/></div>
+</apex:outputPanel>
+
+<h2>Available Space</h2>
+<apex:outputPanel rendered="{!spaces.size == 0}" layout="block"><div class="muted">No space is currently available.</div></apex:outputPanel>
+<apex:outputPanel rendered="{!spaces.size > 0}" layout="block">
+    <table class="grid">
+        <tr><th>Suite</th><th class="num">Floor</th><th class="num">Size (SF)</th><th class="num">Rate ($/SF/yr)</th><th>Rent type</th><th>Available</th></tr>
+        <apex:repeat value="{!spaces}" var="s">
+            <tr>
+                <td>{!s.TC_Unit_Name__c}</td>
+                <td class="num">{!s.TC_Floor__c}</td>
+                <td class="num"><apex:outputText value="{0,number,#,##0}"><apex:param value="{!s.TC_Size__c}"/></apex:outputText></td>
+                <td class="num"><apex:outputText value="{0,number,#,##0.00}"><apex:param value="{!s.TC_Lease_Rate__c}"/></apex:outputText></td>
+                <td>{!s.TC_Rent_Type__c}</td>
+                <td><apex:outputField value="{!s.TC_Date_Available__c}"/></td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:outputPanel>
+<div class="foot">Prepared {!generatedOn}. Information is believed reliable but is not guaranteed.</div>
+</body></html>
+</apex:page>

@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Relationships" icon-name="custom:custom47">
+        <template lwc:if={supported}>
+            <lightning-button-group slot="actions">
+                <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" onclick={handleRefresh}></lightning-button-icon>
+                <lightning-button label="New" onclick={handleNew}></lightning-button>
+            </lightning-button-group>
+        </template>
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={hasRows}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={rows} for:item="r">
+                        <li key={r.id} class="slds-item">
+                            <a data-id={r.id} onclick={openRow}><strong>{r.user}</strong></a>
+                            <span class="slds-m-left_x-small slds-badge">{r.role}</span>
+                            <span class="slds-text-color_weak slds-m-left_x-small">since {r.since}</span>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:else><p class="slds-text-color_weak slds-p-bottom_small">No internal relationships yet.</p></template>
+        </div>
+    </lightning-card>
+</template>

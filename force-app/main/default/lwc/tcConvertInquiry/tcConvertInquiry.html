@@ -1,0 +1,29 @@
+<template>
+    <lightning-quick-action-panel header="Convert Inquiry">
+        <template lwc:if={loading}><lightning-spinner alternative-text="Working" size="small"></lightning-spinner></template>
+        <template lwc:if={error}><div class="slds-text-color_error slds-m-bottom_small">{error}</div></template>
+        <template lwc:if={info}>
+            <template lwc:if={converted}>
+                <p>This inquiry has already been converted.</p>
+            </template>
+            <template lwc:else>
+                <p class="slds-text-heading_small slds-m-bottom_small">{inquiry.Name} · {who}</p>
+                <ul class="slds-list_dotted slds-m-bottom_medium">
+                    <li>{accountAction}</li>
+                    <li>{contactAction}</li>
+                </ul>
+                <lightning-input type="checkbox" label="Create a deal" checked={createDeal} onchange={handleCreateDeal}></lightning-input>
+                <template lwc:if={createDeal}>
+                    <p class="slds-text-color_weak slds-m-vertical_x-small">Deal type: {dealTypeLabel}</p>
+                    <lightning-combobox label="Listing for the deal" value={listingId} options={listingOptions} onchange={handleListing}></lightning-combobox>
+                </template>
+            </template>
+        </template>
+        <div slot="footer">
+            <lightning-button label="Cancel" onclick={close}></lightning-button>
+            <template lwc:if={showConvert}>
+                <lightning-button label="Convert" variant="brand" class="slds-m-left_x-small" onclick={handleConvert}></lightning-button>
+            </template>
+        </div>
+    </lightning-quick-action-panel>
+</template>

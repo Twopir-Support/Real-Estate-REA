@@ -1,0 +1,35 @@
+<template>
+    <lightning-card>
+        <template lwc:if={loading}><lightning-spinner alternative-text="Loading property" size="small"></lightning-spinner></template>
+        <template lwc:if={error}><div class="slds-p-around_medium slds-text-color_error">{error}</div></template>
+        <template lwc:if={data}>
+            <div class="wrap">
+                <div class="media">
+                    <template lwc:if={hasImage}><img src={p.TC_Primary_Image_URL__c} alt={p.Name} class="hero"/></template>
+                    <template lwc:else><div class="hero hero_empty"><lightning-icon icon-name="custom:custom24" size="large" alternative-text="Building"></lightning-icon><span>Add a Primary Image URL or upload photos</span></div></template>
+                </div>
+                <div class="facts">
+                    <p class="eyebrow">{p.TC_Market__c}</p>
+                    <h2 class="name">{p.Name}</h2>
+                    <p class="address">{address}</p>
+                    <div class="chips">
+                        <template for:each={chips} for:item="c"><span key={c.key} class="chip">{c.label}</span></template>
+                    </div>
+                    <template lwc:if={owner}><p class="owner">Owner / Landlord: <strong>{owner}</strong></p></template>
+                    <div class="gauge" aria-label="Occupancy">
+                        <div class="gauge-head"><span>Occupancy</span><strong>{occupancyLabel}</strong></div>
+                        <div class="gauge-track"><div class="gauge-fill" style={gaugeStyle}></div></div>
+                    </div>
+                    <dl class="stats">
+                        <template for:each={stats} for:item="s">
+                            <div key={s.key} class="stat"><dt>{s.label}</dt><dd>{s.value}</dd></div>
+                        </template>
+                    </dl>
+                </div>
+                <template lwc:if={hasMap}>
+                    <div class="map"><lightning-map map-markers={mapMarkers} zoom-level="14" list-view="hidden"></lightning-map></div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

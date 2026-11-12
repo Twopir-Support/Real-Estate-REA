@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Brokerage Overview" icon-name="custom:custom24">
+        <div slot="actions" class="filters">
+            <lightning-combobox label="Market" variant="label-hidden" value={market} options={marketOptions} onchange={handleMarket} class="filter"></lightning-combobox>
+            <lightning-combobox label="Property type" variant="label-hidden" value={propertyType} options={typeOptions} onchange={handleType} class="filter"></lightning-combobox>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Loading dashboard" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error slds-p-around_small">{error}</div></template>
+            <template lwc:if={data}>
+                <div class="kpis">
+                    <template for:each={kpis} for:item="k">
+                        <div key={k.key} class={k.cls}>
+                            <span class="kpi-label">{k.label}</span>
+                            <span class="kpi-value">{k.value}</span>
+                            <span class="kpi-hint">{k.hint}</span>
+                        </div>
+                    </template>
+                </div>
+                <div class="charts">
+                    <div class="chart-panel"><c-tc-chart title="Occupancy by property type" series={occupancySeries} format="percent" max-value="100" color="#0F5F74"></c-tc-chart></div>
+                    <div class="chart-panel"><c-tc-chart title="Open pipeline fees by stage" series={pipelineSeries} format="currency" color="#1F7A4D"></c-tc-chart></div>
+                    <div class="chart-panel"><c-tc-chart title="Lease expirations by year (SF)" series={expirationSeries} format="number" color="#A2650A"></c-tc-chart></div>
+                    <div class="chart-panel"><c-tc-chart title="Inquiries by source (last 12 months)" series={sourceSeries} format="number" color="#5A4FCF"></c-tc-chart></div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

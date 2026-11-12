@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Property_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Property__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Deal_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Deal__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Lease_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Lease__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Listing_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Listing__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Inquiry_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Inquiry__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>TC record page, active in the TC app only.</comment>
+        <content>TC_Availability_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>TC_Availability__c</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0F5F74</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>TC Commercial Real Estate: properties, listings, availabilities, inquiries, deals, leases, sales, commissions and capital sources.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>TC Commercial Real Estate</label>
+    <navType>Standard</navType>
+    <tabs>TC_Home</tabs>
+    <tabs>TC_Property__c</tabs>
+    <tabs>TC_Listing__c</tabs>
+    <tabs>TC_Availability__c</tabs>
+    <tabs>TC_Inquiry__c</tabs>
+    <tabs>TC_Deal__c</tabs>
+    <tabs>TC_Deal_Pipeline</tabs>
+    <tabs>TC_Lease__c</tabs>
+    <tabs>TC_Sale__c</tabs>
+    <tabs>TC_Commission__c</tabs>
+    <tabs>TC_Commission_Dashboard</tabs>
+    <tabs>TC_Property_Search</tabs>
+    <tabs>TC_Capital_Source__c</tabs>
+    <tabs>TC_Market_Rent__c</tabs>
+    <tabs>TC_Unit__c</tabs>
+    <tabs>TC_Unit_Profile__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

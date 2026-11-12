@@ -1,0 +1,19 @@
+<template>
+    <div class="chart">
+        <template lwc:if={title}><h3 class="slds-text-title_caps slds-m-bottom_small">{title}</h3></template>
+        <template lwc:if={hasData}>
+            <ul class="bars" role="list">
+                <template for:each={rows} for:item="r">
+                    <li key={r.key} class="bar-row" title={r.title}>
+                        <span class="bar-label slds-truncate">{r.label}</span>
+                        <span class="bar-track"><span class="bar-fill" style={r.barStyle}></span></span>
+                        <span class="bar-value">{r.display}</span>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template lwc:else>
+            <p class="slds-text-color_weak slds-p-vertical_medium">{emptyMessage}</p>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,14 @@
+<template>
+    <template lwc:if={hasOptions}>
+        <lightning-card title="Documents" icon-name="doctype:pdf">
+            <div class="slds-p-horizontal_medium slds-p-bottom_small">
+                <lightning-combobox label="Document" value={selected} options={comboOptions} onchange={handleSelect}></lightning-combobox>
+                <div class="slds-m-top_small actions">
+                    <lightning-button label="Generate and save as File" variant="brand" icon-name="utility:file" onclick={handleGenerate} disabled={working}></lightning-button>
+                    <a href={previewUrl} target="_blank" class="slds-m-left_small">Preview PDF</a>
+                </div>
+                <template lwc:if={working}><lightning-spinner alternative-text="Creating PDF" size="small"></lightning-spinner></template>
+            </div>
+        </lightning-card>
+    </template>
+</template>

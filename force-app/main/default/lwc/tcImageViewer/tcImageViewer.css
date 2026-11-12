@@ -1,0 +1,9 @@
+.stage { position: relative; margin: 0; }
+.main { width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0.25rem; background: #eef2f4; }
+.nav { position: absolute; top: 45%; background: rgba(0, 0, 0, 0.45); border-radius: 50%; }
+.nav_prev { left: 0.5rem; }
+.nav_next { right: 0.5rem; }
+figcaption { font-size: 0.75rem; color: var(--slds-g-color-neutral-base-50, #747474); padding-top: 0.25rem; }
+.thumbs { display: flex; gap: 0.375rem; overflow-x: auto; margin-top: 0.5rem; }
+.thumb { width: 4rem; height: 3rem; object-fit: cover; border-radius: 0.125rem; cursor: pointer; opacity: 0.7; border: 2px solid transparent; }
+.thumb_active { opacity: 1; border-color: #0f5f74; }

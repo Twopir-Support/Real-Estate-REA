@@ -1,0 +1,16 @@
+.legend { display: flex; flex-wrap: wrap; gap: 0.375rem 1rem; align-items: center; margin: 0 0 0.75rem; padding: 0; list-style: none; font-size: 0.75rem; }
+.legend-title { font-weight: 700; letter-spacing: 0.06em; }
+.legend-item { display: inline-flex; align-items: center; gap: 0.375rem; }
+.swatch { width: 0.875rem; height: 0.875rem; border-radius: 2px; display: inline-block; border: 1px solid rgba(0, 0, 0, 0.1); }
+.stack { display: flex; flex-direction: column; gap: 3px; overflow-x: auto; }
+.floor { display: grid; grid-template-columns: 7.5rem minmax(28rem, 1fr); gap: 0.5rem; align-items: stretch; }
+.floor-label { display: flex; flex-direction: column; justify-content: center; font-size: 0.75rem; }
+.floor-name { font-weight: 700; }
+.floor-meta { color: var(--slds-g-color-neutral-base-50, #747474); font-variant-numeric: tabular-nums; }
+.floor-bar { display: flex; gap: 2px; min-height: 3.25rem; }
+.block { display: flex; flex-direction: column; justify-content: center; padding: 0.25rem 0.375rem; border-radius: 2px; overflow: hidden; min-width: 0; font-size: 0.6875rem; line-height: 1.2; }
+.block_link { cursor: pointer; }
+.block_link:hover, .block_link:focus { outline: 2px solid #15232b; outline-offset: -2px; }
+.block_dim { opacity: 0.25; }
+.block-label { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.block-sub, .block-sf { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.9; }

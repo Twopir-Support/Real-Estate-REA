@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Deal Pipeline" icon-name="custom:custom48">
+        <div slot="actions" class="toolbar">
+            <lightning-combobox label="Deal type" variant="label-hidden" value={recordType} options={typeOptions} onchange={handleType} class="type-filter"></lightning-combobox>
+            <lightning-input type="toggle" label="My deals" checked={myDealsOnly} onchange={handleMine} message-toggle-active="" message-toggle-inactive=""></lightning-input>
+            <lightning-button label="New Deal" icon-name="utility:add" onclick={newDeal}></lightning-button>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Loading pipeline" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={data}>
+                <p class="slds-text-color_weak slds-m-bottom_small">{totalLabel}. Drag a card to change its stage.</p>
+                <div class="board">
+                    <template for:each={columns} for:item="col">
+                        <section key={col.stage} class={col.cls} data-stage={col.stage} ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleDrop} aria-label={col.stage}>
+                            <header class="column-head">
+                                <span class="stage">{col.stage}</span>
+                                <span class="count">{col.count}</span>
+                                <span class="sum">{col.fee}<template lwc:if={col.sf}> · {col.sf}</template></span>
+                            </header>
+                            <div class="cards">
+                                <template for:each={col.cards} for:item="c">
+                                    <article key={c.id} class="card" draggable="true" data-id={c.id} ondragstart={handleDragStart}>
+                                        <div class="card-top">
+                                            <a class="card-name" data-id={c.id} onclick={openDeal}>{c.name}</a>
+                                            <lightning-button-menu alternative-text="Move deal" icon-size="x-small" menu-alignment="right" data-id={c.id} onselect={handleMoveMenu}>
+                                                <template for:each={stageMenu} for:item="m"><lightning-menu-item key={m.value} label={m.label} value={m.value}></lightning-menu-item></template>
+                                            </lightning-button-menu>
+                                        </div>
+                                        <div class="card-type">{c.type}</div>
+                                        <div class="card-line">{c.client}</div>
+                                        <div class="card-line slds-text-color_weak">{c.property}</div>
+                                        <div class="card-foot">
+                                            <span class="fee">{c.fee}</span>
+                                            <span class={c.closeCls}>{c.close}</span>
+                                        </div>
+                                    </article>
+                                </template>
+                            </div>
+                        </section>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

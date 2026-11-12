@@ -1,0 +1,4 @@
+.scroll { overflow-x: auto; }
+.term { font-weight: 600; white-space: nowrap; }
+.best { background: #e1f3e9; font-weight: 700; color: #1f7a4d; }
+td { font-variant-numeric: tabular-nums; }

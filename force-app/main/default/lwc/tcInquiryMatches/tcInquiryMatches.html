@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Matching Listings" icon-name="standard:recommendation">
+        <lightning-button slot="actions" label="Find Matches" icon-name="utility:search" onclick={handleFind}></lightning-button>
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Searching" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={searched}>
+                <template lwc:if={hasMatches}>
+                    <ul class="matches">
+                        <template for:each={cards} for:item="m">
+                            <li key={m.key} class="match">
+                                <lightning-input type="checkbox" label="Select" variant="label-hidden" checked={m.checked} data-id={m.listingId} onchange={toggle}></lightning-input>
+                                <div class="match-body">
+                                    <a data-id={m.listingId} onclick={openListing} class="match-name">{m.listingName}</a>
+                                    <div class="match-prop">{m.propertyName}</div>
+                                    <div class="match-facts">{m.facts}</div>
+                                    <div class="match-why">{m.reasonText}</div>
+                                </div>
+                                <span class={m.scoreCls} title="Match score out of 100">{m.score}</span>
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="actions">
+                        <lightning-button label="Add selected as Prospective Listings" variant="brand" onclick={handleSave} disabled={saveDisabled}></lightning-button>
+                    </div>
+                </template>
+                <template lwc:else><p class="slds-text-color_weak">No active listings score 40 or more against this requirement. Widen the size, budget or location and try again.</p></template>
+            </template>
+            <template lwc:else>
+                <p class="slds-text-color_weak">Score active listings against this inquiry's property type, size, budget and preferred location.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,32 @@
+<apex:page controller="TC_DocumentController" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false">
+<html><head><c:TC_Document_Styles landscape="true"/></head><body>
+<div class="brand">
+    <div class="co">{!company} &middot; Lease Comp Report</div>
+    <h1>{!property.Name}</h1>
+    <div class="muted">{!property.TC_Full_Address__c} &middot; {!property.TC_Property_Type__c} &middot; Class {!property.TC_Building_Class__c}</div>
+</div>
+<apex:outputPanel rendered="{!leases.size == 0}" layout="block"><div class="muted">No leases are recorded for this property.</div></apex:outputPanel>
+<apex:outputPanel rendered="{!leases.size > 0}" layout="block">
+    <table class="grid">
+        <tr><th>Tenant</th><th>Suite</th><th class="num">Floor</th><th class="num">Size (SF)</th><th class="num">Rate ($/SF/yr)</th><th>Lease type</th><th>Commencement</th><th>Expiration</th><th class="num">Term (mo)</th><th class="num">Free rent (mo)</th><th class="num">TI ($/SF)</th><th>Status</th></tr>
+        <apex:repeat value="{!leases}" var="l">
+            <tr>
+                <td>{!l.TC_Tenant__r.Name}</td>
+                <td>{!l.TC_Unit_Name__c}</td>
+                <td class="num">{!l.TC_Floor__c}</td>
+                <td class="num"><apex:outputText value="{0,number,#,##0}"><apex:param value="{!l.TC_Size__c}"/></apex:outputText></td>
+                <td class="num"><apex:outputText value="{0,number,#,##0.00}"><apex:param value="{!l.TC_Lease_Rate__c}"/></apex:outputText></td>
+                <td>{!l.TC_Lease_Type__c}</td>
+                <td><apex:outputField value="{!l.TC_Commencement_Date__c}"/></td>
+                <td><apex:outputField value="{!l.TC_Expiration_Date__c}"/></td>
+                <td class="num"><apex:outputText value="{0,number,0}"><apex:param value="{!l.TC_Term_Months__c}"/></apex:outputText></td>
+                <td class="num">{!l.TC_Free_Rent_Months__c}</td>
+                <td class="num"><apex:outputText value="{0,number,#,##0.00}"><apex:param value="{!l.TC_TI_Allowance__c}"/></apex:outputText></td>
+                <td>{!l.TC_Status__c}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:outputPanel>
+<div class="foot">Prepared {!generatedOn}. Comparable lease data is provided for discussion purposes.</div>
+</body></html>
+</apex:page>

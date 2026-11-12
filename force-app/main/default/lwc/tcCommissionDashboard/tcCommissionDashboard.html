@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Commission Dashboard" icon-name="custom:custom16">
+        <div slot="actions">
+            <lightning-combobox label="Year" variant="label-hidden" value={yearValue} options={yearOptions} onchange={handleYear}></lightning-combobox>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Loading commissions" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={data}>
+                <div class="tiles">
+                    <template for:each={tiles} for:item="t">
+                        <div key={t.key} class="tile"><span class="tile-label">{t.label}</span><span class="tile-value">{t.value}</span></div>
+                    </template>
+                </div>
+                <div class="grid2">
+                    <div class="panel"><c-tc-chart title={brokerTitle} series={brokerSeries} format="currency" color="#0F5F74" empty-message="No inside broker commissions for this year."></c-tc-chart></div>
+                    <div class="panel"><c-tc-chart title="Commissions by status" series={statusSeries} format="currency" color="#1F7A4D"></c-tc-chart></div>
+                </div>
+                <template lwc:if={canSeeHouse}>
+                    <div class="panel slds-m-top_medium">
+                        <h3 class="slds-text-title_caps slds-m-bottom_small">House share by broker</h3>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead><tr><th scope="col">Broker</th><th scope="col" class="num">Gross</th><th scope="col" class="num">House</th></tr></thead>
+                            <tbody>
+                                <template for:each={houseRows} for:item="r">
+                                    <tr key={r.key}><td>{r.label}</td><td class="num">{r.gross}</td><td class="num">{r.house}</td></tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+                <div class="panel slds-m-top_medium slds-m-bottom_small">
+                    <h3 class="slds-text-title_caps slds-m-bottom_small">Earned and invoiced, awaiting payment</h3>
+                    <template lwc:if={hasUpcoming}>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead><tr><th>Commission</th><th>Deal</th><th>Payee</th><th>Type</th><th class="num">Amount</th><th>Due</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <template for:each={upcoming} for:item="c">
+                                    <tr key={c.id}>
+                                        <td><a data-id={c.id} onclick={openRecord}>{c.name}</a></td>
+                                        <td>{c.deal}</td><td>{c.payee}</td><td>{c.type}</td>
+                                        <td class="num">{c.amount}</td><td>{c.due}</td><td>{c.status}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template lwc:else><p class="slds-text-color_weak">Nothing awaiting payment.</p></template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

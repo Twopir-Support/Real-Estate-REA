@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Commissions" icon-name="custom:custom16">
+        <div class="slds-p-horizontal_medium">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Working" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={data}>
+                <div class="summary">
+                    <template for:each={summary} for:item="s"><div key={s.key} class={s.cls}><span class="sum-label">{s.label}</span><span class="sum-value">{s.value}</span></div></template>
+                </div>
+                <template lwc:if={hasRows}>
+                    <lightning-datatable key-field="Id" data={rows} columns={columns} draft-values={draftValues} onsave={handleSave} hide-checkbox-column></lightning-datatable>
+                </template>
+                <template lwc:else><p class="slds-text-color_weak slds-m-bottom_small">No commissions yet.</p></template>
+
+                <div class="add-bar">
+                    <lightning-combobox label="Commission type" value={newType} options={typeOptions} onchange={handleNewType} class="add-type"></lightning-combobox>
+                    <lightning-input type="number" label="Rows" min="1" max="30" value={newCount} onchange={handleNewCount} class="add-count"></lightning-input>
+                    <lightning-button label="Add rows" icon-name="utility:add" onclick={addRows}></lightning-button>
+                </div>
+                <template lwc:if={hasNewRows}>
+                    <div class="new-rows">
+                        <p class="slds-text-title_caps slds-m-bottom_x-small">New {newTypeLabel} commissions</p>
+                        <template for:each={newRows} for:item="r">
+                            <div key={r.key} class="new-row">
+                                <template lwc:if={isUserType}>
+                                    <lightning-record-picker label="Broker (User)" object-api-name="User" data-key={r.key} data-field="TC_Broker__c" onchange={handleNewField}></lightning-record-picker>
+                                </template>
+                                <template lwc:else>
+                                    <lightning-record-picker label="Account" object-api-name="Account" data-key={r.key} data-field="TC_Account__c" onchange={handleNewField}></lightning-record-picker>
+                                    <lightning-record-picker label="Contact" object-api-name="Contact" data-key={r.key} data-field="TC_Contact__c" onchange={handleNewField}></lightning-record-picker>
+                                </template>
+                                <lightning-input type="number" label="Fee %" step="0.001" data-key={r.key} data-field="TC_Fee_Percent__c" onchange={handleNewField}></lightning-input>
+                                <template lwc:if={showHouse}>
+                                    <lightning-input type="number" label="House %" step="0.01" data-key={r.key} data-field="TC_House_Fee_Percent__c" onchange={handleNewField}></lightning-input>
+                                </template>
+                                <lightning-input label="Description" data-key={r.key} data-field="TC_Description__c" onchange={handleNewField}></lightning-input>
+                            </div>
+                        </template>
+                        <div class="slds-m-top_small">
+                            <lightning-button label="Cancel" onclick={cancelNew}></lightning-button>
+                            <lightning-button label="Save new commissions" variant="brand" class="slds-m-left_x-small" onclick={saveNew}></lightning-button>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

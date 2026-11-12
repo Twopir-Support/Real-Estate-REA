@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Term Sheet Comparison" icon-name="custom:custom18">
+        <div class="slds-p-horizontal_medium slds-p-bottom_small">
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={hasSheets}>
+                <div class="scroll">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead><tr><th scope="col">Term</th><template for:each={headers} for:item="h"><th key={h.key} scope="col"><a href={h.link}>{h.label}</a></th></template></tr></thead>
+                        <tbody>
+                            <template for:each={rows} for:item="r">
+                                <tr key={r.key}><th scope="row" class="term">{r.label}</th>
+                                    <template for:each={r.cells} for:item="c"><td key={c.key} class={c.cls}>{c.value}</td></template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="slds-text-color_weak slds-m-top_x-small">Highlighted: lowest rate and fee, highest LTV.</p>
+            </template>
+            <template lwc:else><p class="slds-text-color_weak">No term sheets yet. Add Deal Sources, then term sheets under each source.</p></template>
+        </div>
+    </lightning-card>
+</template>

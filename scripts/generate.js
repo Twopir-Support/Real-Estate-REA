@@ -169,7 +169,16 @@ for (const o of M.objects) {
   sections.push({ customLabel: false, detailHeading: true, editHeading: false, label: 'System Information', layoutColumns: [{ layoutItems: [{ behavior: 'Readonly', field: 'CreatedById' }] }, { layoutItems: [{ behavior: 'Readonly', field: 'LastModifiedById' }] }], style: 'TwoColumnsLeftToRight' });
   const rel = (children[o.api] || []).map(c => ({ fields: ['NAME'], relatedList: `${c.obj.api}.${c.field.api}` }));
   rel.push({ relatedList: 'RelatedActivityList' }, { relatedList: 'RelatedHistoryList' }, { relatedList: 'RelatedFileList' });
-  write(`layouts/${o.api}-TC ${o.label} Layout.layout-meta.xml`, doc('Layout', { layoutSections: sections, relatedLists: rel, showEmailCheckbox: false, showHighlightsPanel: false, showInteractionLogPanel: false, showRunAssignmentRulesCheckbox: false, showSubmitAndAttachButton: false }));
+  let platformActionList;
+  if ((o.quickActions || []).length) {
+    for (const qa of o.quickActions) {
+      write(`quickActions/${o.api}.${qa.name}.quickAction-meta.xml`, doc('QuickAction', { actionSubtype: 'ScreenAction', description: qa.desc, label: qa.label, lightningWebComponent: qa.lwc, optionsCreateFeedItem: false, type: 'LightningWebComponent' }));
+    }
+    const items = o.quickActions.map(qa => ({ actionName: `${o.api}.${qa.name}`, actionType: 'QuickAction' }))
+      .concat(['Edit', 'Clone', 'Delete', 'ChangeOwnerOne'].filter(b => !(hasMD && b === 'ChangeOwnerOne')).map(b => ({ actionName: b, actionType: 'StandardButton' })));
+    platformActionList = { actionListContext: 'Record', platformActionListItems: items.map((it, i) => ({ ...it, sortOrder: i })) };
+  }
+  write(`layouts/${o.api}-TC ${o.label} Layout.layout-meta.xml`, doc('Layout', { layoutSections: sections, platformActionList, relatedLists: rel, showEmailCheckbox: false, showHighlightsPanel: false, showInteractionLogPanel: false, showRunAssignmentRulesCheckbox: false, showSubmitAndAttachButton: false }));
 }
 
 // standard object fields
@@ -220,10 +229,14 @@ function permSet(name, label, desc, broker) {
   for (const o of M.objects) o.fields.forEach(f => addF(o.api, f));
   for (const [std, fields] of Object.entries(M.standardFields)) fields.forEach(f => addF(std, f));
   fieldPermissions.sort((a, b) => a.field.localeCompare(b.field));
-  const tabSettings = M.objects.filter(o => !o.noTab).map(o => ({ tab: o.api, visibility: 'Visible' }));
+  const tabSettings = M.objects.filter(o => !o.noTab).map(o => ({ tab: o.api, visibility: 'Visible' }))
+    .concat(['TC_Home', 'TC_Deal_Pipeline', 'TC_Property_Search', 'TC_Commission_Dashboard'].map(t => ({ tab: t, visibility: 'Visible' })));
   const recordTypeVisibilities = [];
   for (const o of M.objects) for (const rt of o.recordTypes || []) recordTypeVisibilities.push({ recordType: `${o.api}.${rt.api}`, visible: true });
-  const body = { description: desc, hasActivationRequired: false, label, objectPermissions, fieldPermissions, tabSettings, recordTypeVisibilities };
+  const classAccesses = ['TC_PropertyUIController', 'TC_DealUIController', 'TC_RecordUIController', 'TC_DocumentController'].map(c => ({ apexClass: c, enabled: true }));
+  const pageAccesses = ['TC_Property_Flyer', 'TC_Lease_Comp_Report', 'TC_Tour_Book'].map(p => ({ apexPage: p, enabled: true }));
+  const applicationVisibilities = [{ application: 'TC_Commercial_Real_Estate', visible: true }];
+  const body = { description: desc, hasActivationRequired: false, label, objectPermissions, fieldPermissions, tabSettings, recordTypeVisibilities, classAccesses, pageAccesses, applicationVisibilities };
   if (!broker) body.customPermissions = [{ enabled: true, name: 'TC_Commission_Privacy_Admin' }];
   write(`permissionsets/${name}.permissionset-meta.xml`, doc('PermissionSet', body));
 }

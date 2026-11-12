@@ -1,0 +1,10 @@
+<template>
+    <template lwc:if={error}><div class="slds-text-color_error slds-p-around_small">{error}</div></template>
+    <template lwc:if={hasTiles}>
+        <div class="scorecard" role="list" aria-label={title}>
+            <template for:each={tiles} for:item="t">
+                <div key={t.key} class="tile" role="listitem"><span class="label">{t.label}</span><span class="value">{t.value}</span></div>
+            </template>
+        </div>
+    </template>
+</template>

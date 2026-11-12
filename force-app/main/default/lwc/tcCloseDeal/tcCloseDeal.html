@@ -1,0 +1,40 @@
+<template>
+    <lightning-quick-action-panel header="Close Deal">
+        <template lwc:if={loading}><lightning-spinner alternative-text="Working" size="small"></lightning-spinner></template>
+        <template lwc:if={error}><div class="slds-text-color_error slds-m-bottom_small">{error}</div></template>
+        <template lwc:if={done}>
+            <p class="slds-m-bottom_small">The deal is closed. These records were created:</p>
+            <ul class="slds-list_dotted">
+                <template for:each={createdList} for:item="c"><li key={c.key}><a data-id={c.id} onclick={openCreated}>{c.label}</a></li></template>
+            </ul>
+        </template>
+        <template lwc:elseif={info}>
+            <p class="slds-text-color_weak slds-m-bottom_small">{info.deal.Name} · {info.recordType} · Gross fee {feeLabel}</p>
+            <template lwc:if={alreadyClosed}><div class="slds-text-color_error slds-m-bottom_small">This deal is already {info.deal.TC_Status__c}. Saving again updates its close details.</div></template>
+            <lightning-radio-group label="Deal Status" options={statusOptions} value={status} onchange={handleStatus} type="button" required></lightning-radio-group>
+            <div class="slds-grid slds-gutters slds-m-top_small slds-wrap">
+                <div class="slds-col slds-size_1-of-2"><lightning-input type="date" label="Actual Close Date" value={closeDate} onchange={handleDate} required></lightning-input></div>
+                <div class="slds-col slds-size_1-of-2"><lightning-input type="number" formatter="currency" step="0.01" label="Actual Value" value={actualValue} onchange={handleValue}></lightning-input></div>
+            </div>
+            <template lwc:if={isLost}>
+                <lightning-combobox class="slds-m-top_small" label="Lost Reason" options={reasonOptions} value={lostReason} onchange={handleReason} required></lightning-combobox>
+            </template>
+            <template lwc:if={hasWillCreate}>
+                <div class="slds-box slds-box_x-small slds-m-top_medium">
+                    <p class="slds-text-title_caps slds-m-bottom_x-small">On save</p>
+                    <ul class="slds-list_dotted"><template for:each={willCreate} for:item="w"><li key={w.key}>{w.label}</li></template></ul>
+                </div>
+            </template>
+            <template lwc:if={hasMissing}>
+                <p class="slds-text-color_error slds-m-top_small">Fill in {missingText} on the deal for the related records to be created.</p>
+            </template>
+        </template>
+        <div slot="footer">
+            <template lwc:if={done}><lightning-button label="Done" variant="brand" onclick={close}></lightning-button></template>
+            <template lwc:else>
+                <lightning-button label="Cancel" onclick={close}></lightning-button>
+                <lightning-button label="Close Deal" variant="brand" class="slds-m-left_x-small" onclick={handleSave}></lightning-button>
+            </template>
+        </div>
+    </lightning-quick-action-panel>
+</template>

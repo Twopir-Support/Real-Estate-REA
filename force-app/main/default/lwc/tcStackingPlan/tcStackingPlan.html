@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Stacking Plan" icon-name="custom:custom57">
+        <div slot="actions">
+            <template lwc:if={hasFloors}>
+                <lightning-combobox label="Filter by expiration" variant="label-hidden" value={yearFilter} options={yearOptions} onchange={handleYear}></lightning-combobox>
+            </template>
+        </div>
+        <div class="slds-p-horizontal_medium slds-p-bottom_small">
+            <template lwc:if={loading}><lightning-spinner alternative-text="Loading stacking plan" size="small"></lightning-spinner></template>
+            <template lwc:if={error}><div class="slds-text-color_error">{error}</div></template>
+            <template lwc:if={data}>
+                <template lwc:if={enabled}>
+                    <template lwc:if={hasFloors}>
+                        <ul class="legend" aria-label="Legend">
+                            <li class="legend-title">LXD</li>
+                            <template for:each={legend} for:item="l">
+                                <li key={l.key} class="legend-item"><span class="swatch" style={l.style}></span>{l.label}</li>
+                            </template>
+                        </ul>
+                        <div class="stack">
+                            <template for:each={floors} for:item="f">
+                                <div key={f.floor} class="floor">
+                                    <div class="floor-label"><span class="floor-name">{f.label}</span><span class="floor-meta">{f.meta}</span></div>
+                                    <div class="floor-bar">
+                                        <template for:each={f.blocks} for:item="b">
+                                            <div key={b.key} class={b.cls} style={b.style} title={b.title} data-id={b.recordId}
+                                                 onclick={openBlock} onkeydown={handleKey} role="button" tabindex="0">
+                                                <span class="block-label">{b.label}</span>
+                                                <span class="block-sub">{b.sublabel}</span>
+                                                <span class="block-sf">{b.sf}</span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="slds-text-color_weak">Add Number of Floors and Average Floor Size to the property, or add units, to build the stacking plan.</p>
+                    </template>
+                </template>
+                <template lwc:else>
+                    <p class="slds-text-color_weak">The stacking plan is not enabled for this property record type. An admin can add it in the TC Stacking Plan Setting.</p>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

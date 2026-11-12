@@ -227,6 +227,7 @@ const objects = [
     desc: 'A brokerage revenue opportunity, typed by business line (12 record types). Closing a deal as Won can create a Lease, Sale or Listing.',
     nameField: { label: 'Deal Name', type: 'Text' },
     recordTypes: dealRTs,
+    quickActions: [{ name: 'TC_Close_Deal', label: 'Close Deal', lwc: 'tcCloseDeal', desc: 'Close the deal as Won or Lost and create the resulting Lease, Sale or Listing.' }],
     fields: [
       LK('TC_Property__c', 'Property', 'TC_Property__c', A),
       LK('TC_Space__c', 'Space', 'TC_Availability__c', A),
@@ -376,6 +377,7 @@ const objects = [
     api: 'TC_Inquiry__c', label: 'Inquiry', plural: 'Inquiries', motif: 'Custom15: People', src: 'A',
     desc: 'An unqualified lead about leasing or buying space, arriving by phone, email, portal or web form. Converts to Account, Contact and Deal.',
     nameField: { label: 'Inquiry Number', type: 'AutoNumber', format: 'INQ-{00000}' },
+    quickActions: [{ name: 'TC_Convert_Inquiry', label: 'Convert', lwc: 'tcConvertInquiry', desc: 'Convert the inquiry to an account, contact and deal.' }],
     fields: [
       PL('TC_Inquiry_Type__c', 'Inquiry Type', ['Lease', 'Sale'], { ...A, required: true, defaultValue: 'Lease' }),
       PL('TC_Status__c', 'Status', ['New', 'Active', 'Converted', 'Disqualified'], { required: true, defaultValue: 'New' }),

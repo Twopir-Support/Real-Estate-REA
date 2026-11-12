@@ -1,0 +1,10 @@
+.summary { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 0.75rem; }
+.sum-item { display: flex; flex-direction: column; }
+.sum-item_warn .sum-value { color: #a2650a; }
+.sum-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--slds-g-color-neutral-base-50, #747474); }
+.sum-value { font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.add-bar { display: flex; align-items: flex-end; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0 0.5rem; }
+.add-type { min-width: 12rem; }
+.add-count { width: 5rem; }
+.new-rows { border: 1px dashed var(--slds-g-color-border-base-1, #c9c9c9); border-radius: 0.25rem; padding: 0.75rem; margin-bottom: 0.75rem; }
+.new-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.5rem; padding-bottom: 0.5rem; margin-bottom: 0.5rem; border-bottom: 1px solid var(--slds-g-color-border-base-1, #eee); }
